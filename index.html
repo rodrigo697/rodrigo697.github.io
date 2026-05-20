@@ -3040,31 +3040,35 @@ footer {
   .hero-content { width:100%; max-width:100%; }
   /* ── Hero tagline: ajustar tamaño ── */
   .ht-line2 { font-size:clamp(15px,4.2vw,20px); }
-  /* ── SOMNI hero: grid de 2 columnas → 1 columna ── */
-  .somni-inner { grid-template-columns:1fr !important; gap:40px; padding:72px 24px; }
+  /* ── SOMNI hero: grid 1 col + contención de overflow ── */
+  .somni-inner {
+    grid-template-columns:1fr !important;
+    gap:40px; padding:60px 24px;
+    max-width:100vw; box-sizing:border-box;
+  }
+  .somni-inner > * { min-width:0; max-width:100%; overflow-wrap:break-word; word-break:break-word; }
+  .somni-h2 { font-size:clamp(24px,6.5vw,32px) !important; letter-spacing:-0.5px !important; }
+  .somni-body { font-size:15px; }
   .somni-wc-inner { grid-template-columns:1fr !important; gap:40px; }
+  .somni-wc-inner > * { min-width:0; }
   .somni-wc-inner-wrap { padding:64px 24px; }
-  /* ── SOMNI tags: display:flex + wrap para que no desborden ── */
-  .somni-tech-tag {
-    display:flex !important; flex-wrap:wrap;
-    font-size:9px; letter-spacing:1px; padding:6px 12px;
-    white-space:normal;
-  }
-  .somni-wc-tag {
-    flex-wrap:wrap; font-size:9px;
-    letter-spacing:1.5px; white-space:normal;
-  }
-  /* ── Trust band: ocultar elementos que desbordan en mobile ── */
+  /* ── SOMNI tags ── */
+  .somni-tech-tag { display:flex !important; flex-wrap:wrap; font-size:9px; letter-spacing:1px; padding:6px 12px; }
+  .somni-wc-tag { flex-wrap:wrap; font-size:9px; letter-spacing:1.5px; white-space:normal; }
+  /* ── Quote hero: contener overflow ── */
+  .sec-quote-hero { overflow:hidden; }
+  .sec-quote-hero * { max-width:100%; overflow-wrap:break-word; word-break:break-word; }
+  /* ── Trust band ── */
   .trust-label { white-space:normal; font-size:9px; }
   .trust-cert-badge { white-space:normal; }
-  /* ── Sección SOMNI hero dashboard: ocultar en mobile para limpieza ── */
+  /* ── Todos los grids: items con min-width:0 ── */
+  .srv-grid > *, .metrics-inner > *, .cwc-inner > * { min-width:0; }
+  /* ── SOMNI dashboard: ocultar ── */
   .somni-dashboard { display:none !important; }
-  /* ── Nosotros: reducir padding ── */
+  /* ── Paddings secciones ── */
   .sec-nosotros { padding-top:60px !important; padding-bottom:60px !important; }
-  /* ── Secciones con padding propio: override explícito ── */
   .sec-certs, #certs { padding-top:64px !important; padding-bottom:64px !important; }
   .sec-contact-wc { padding-top:64px !important; padding-bottom:64px !important; }
-  #somni .somni-inner { padding-top:72px; padding-bottom:72px; }
 }
 </style>
 </head>

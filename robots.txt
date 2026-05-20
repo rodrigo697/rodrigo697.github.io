@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /2CR_Estrategia_WebWorldClass.html
+Disallow: /2CR_Homepage_Prototipo.html
+Disallow: /2CR_logo_animado.html
+Disallow: /2CR_logo_animado_standalone.html
+
+Sitemap: https://2crconsultores.com/sitemap.xml

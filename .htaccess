@@ -1,0 +1,101 @@
+# ═══════════════════════════════════════════════════════════
+#  2CR Consultoría y Servicios de Ingeniería
+#  .htaccess — Producción Apache / cPanel
+#  Generado: 2026-05-20
+# ═══════════════════════════════════════════════════════════
+
+Options -Indexes
+Options -MultiViews
+
+# ── Motor de reescritura ────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Forzar HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Forzar sin www → con www (ajustar si el dominio va sin www)
+  # RewriteCond %{HTTP_HOST} !^www\. [NC]
+  # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+  # Eliminar trailing slash (excepto raíz)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [R=301,L]
+
+  # Página 404 personalizada para cualquier recurso inexistente
+  ErrorDocument 404 /404.html
+</IfModule>
+
+# ── Compresión GZIP ─────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ── Cache de activos estáticos ──────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — cache corto (el sitio se actualiza)
+  ExpiresByType text/html                  "access plus 1 hour"
+
+  # Imágenes — cache largo
+  ExpiresByType image/jpeg                 "access plus 6 months"
+  ExpiresByType image/png                  "access plus 6 months"
+  ExpiresByType image/webp                 "access plus 6 months"
+  ExpiresByType image/svg+xml              "access plus 6 months"
+  ExpiresByType image/x-icon               "access plus 1 year"
+
+  # CSS y JS
+  ExpiresByType text/css                   "access plus 1 month"
+  ExpiresByType application/javascript     "access plus 1 month"
+  ExpiresByType text/javascript            "access plus 1 month"
+
+  # Fuentes
+  ExpiresByType font/woff2                 "access plus 1 year"
+  ExpiresByType application/font-woff2     "access plus 1 year"
+  ExpiresByType font/woff                  "access plus 1 year"
+
+  # PDF
+  ExpiresByType application/pdf            "access plus 1 month"
+</IfModule>
+
+# ── Cabeceras de seguridad ──────────────────────────────────
+<IfModule mod_headers.c>
+  # Protección clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Protección XSS
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # HSTS — activar solo después de confirmar HTTPS estable
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Eliminar cabecera que expone versión de servidor
+  Header unset X-Powered-By
+  Header unset Server
+</IfModule>
+
+# ── Tipos MIME adicionales ──────────────────────────────────
+<IfModule mod_mime.c>
+  AddType image/webp                       .webp
+  AddType font/woff2                       .woff2
+  AddType application/manifest+json        .webmanifest
+</IfModule>
+
+# ── Bloquear acceso a archivos internos ────────────────────
+<FilesMatch "(^\.htaccess|\.htpasswd|\.env|PROMPT MAESTRO\.docx|Resumen Ejecutivo)">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# ── Charset por defecto ─────────────────────────────────────
+AddDefaultCharset UTF-8

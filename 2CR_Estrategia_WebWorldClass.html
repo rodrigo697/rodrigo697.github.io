@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2CR — Estrategia Web World Class | Documento Maestro</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --black: #0A0A0A;
+    --deep: #111111;
+    --surface: #161616;
+    --card: #1C1C1C;
+    --border: #2A2A2A;
+    --orange: #FF5C00;
+    --orange-dim: #CC4A00;
+    --orange-glow: rgba(255,92,0,0.12);
+    --white: #FFFFFF;
+    --gray-100: #F5F5F5;
+    --gray-400: #999999;
+    --gray-600: #666666;
+    --graphite: #2D2D2D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 100px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 50%, #0d0d0d 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(255,92,0,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+  .cover-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 32px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .cover-title {
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    max-width: 820px;
+    margin-bottom: 28px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .cover-title span { color: var(--orange); }
+  .cover-subtitle {
+    font-size: 20px;
+    color: var(--gray-400);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 60px;
+    font-weight: 300;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-top: 20px;
+  }
+  .cover-meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    margin-bottom: 6px;
+  }
+  .cover-meta-item span {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  /* LAYOUT */
+  .doc-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 100px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap: 32px;
+    overflow-x: auto;
+  }
+  .doc-nav a {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .doc-nav a:hover { color: var(--orange); }
+
+  .section {
+    padding: 100px 100px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:nth-child(even) { background: var(--deep); }
+
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .section-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .section-subtitle {
+    font-size: 18px;
+    color: var(--gray-400);
+    max-width: 700px;
+    margin-bottom: 64px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* CARDS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: var(--orange); }
+  .card-icon {
+    width: 48px; height: 48px;
+    background: var(--orange-glow);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.5px;
+  }
+  .card-body {
+    font-size: 14px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: linear-gradient(135deg, var(--orange-glow), transparent);
+    border: 1px solid rgba(255,92,0,0.3);
+    border-radius: 20px;
+    padding: 48px;
+    margin: 48px 0;
+  }
+  .highlight-quote {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--white);
+    font-style: italic;
+  }
+  .highlight-quote strong { color: var(--orange); font-style: normal; font-weight: 700; }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+  }
+  .compare-table th {
+    background: var(--graphite);
+    padding: 18px 24px;
+    text-align: left;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-weight: 600;
+  }
+  .compare-table th:first-child { border-radius: 12px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 12px 0 0; }
+  .compare-table td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--gray-400);
+  }
+  .compare-table td:first-child { color: var(--white); font-weight: 500; }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .badge-bad { color: #FF4444; font-weight: 600; }
+  .badge-good { color: #22CC88; font-weight: 600; }
+  .badge-warn { color: #FFAA00; font-weight: 600; }
+
+  /* SITEMAP */
+  .sitemap { margin-top: 48px; }
+  .sitemap-level-0 {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .sitemap-page {
+    background: var(--card);
+    border: 1px solid var(--orange);
+    border-radius: 12px;
+    padding: 18px 24px;
+    min-width: 160px;
+  }
+  .sitemap-page-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .sitemap-page-subs {
+    list-style: none;
+  }
+  .sitemap-page-subs li {
+    font-size: 12px;
+    color: var(--gray-400);
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sitemap-page-subs li:last-child { border-bottom: none; }
+
+  /* COLOR PALETTE */
+  .palette {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 40px 0;
+  }
+  .swatch {
+    flex: 1; min-width: 140px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .swatch-color {
+    height: 120px;
+  }
+  .swatch-info {
+    background: var(--card);
+    padding: 16px;
+  }
+  .swatch-name {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .swatch-hex {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-family: monospace;
+  }
+
+  /* TYPOGRAPHY SPECIMEN */
+  .typo-specimen {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    margin: 24px 0;
+  }
+  .typo-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  /* SECTION WIREFRAME */
+  .wireframe-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .wf-header {
+    background: var(--graphite);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .wf-section-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange);
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .wf-height-badge {
+    font-size: 11px;
+    background: var(--orange-glow);
+    color: var(--orange);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .wf-body { padding: 24px; }
+  .wf-description {
+    font-size: 14px;
+    color: var(--gray-400);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .wf-elements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .wf-el {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+  .wf-el.highlight-el {
+    background: var(--orange-glow);
+    border-color: rgba(255,92,0,0.4);
+    color: var(--orange);
+  }
+
+  /* ANIMATION IDEAS */
+  .anim-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .anim-trigger {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .anim-name {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .anim-desc {
+    font-size: 13px;
+    color: var(--gray-400);
+    line-height: 1.7;
+  }
+
+  /* TECH STACK */
+  .tech-row {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 24px;
+  }
+  .tech-row:last-child { border-bottom: none; }
+  .tech-category {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 600;
+    min-width: 140px;
+  }
+  .tech-name {
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 180px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .tech-reason {
+    font-size: 13px;
+    color: var(--gray-400);
+    flex: 1;
+    line-height: 1.6;
+  }
+  .tech-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    background: var(--orange-glow);
+    color: var(--orange);
+    white-space: nowrap;
+  }
+
+  /* COPY SECTION */
+  .copy-block {
+    background: var(--card);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 16px 16px 0;
+    padding: 32px 36px;
+    margin: 20px 0;
+  }
+  .copy-context {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .copy-headline {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .copy-body {
+    font-size: 15px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+  .copy-cta {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--orange);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  /* KPI STRIP */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 48px 0;
+  }
+  .kpi {
+    background: var(--card);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .kpi-number {
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -2px;
+    display: block;
+  }
+  .kpi-label {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* FOOTER */
+  .doc-footer {
+    padding: 80px 100px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .doc-footer-title {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .doc-footer-sub {
+    color: var(--gray-400);
+    font-size: 16px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .cover, .section, .doc-nav { padding-left: 32px; padding-right: 32px; }
+    .grid-2, .grid-3, .grid-4, .kpi-strip { grid-template-columns: 1fr; }
+    .cover-meta { flex-direction: column; gap: 24px; }
+    .tech-row { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* UTILS */
+  .text-orange { color: var(--orange); }
+  .text-muted { color: var(--gray-400); }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-32 { margin-top: 32px; }
+  .mt-48 { margin-top: 48px; }
+  .divider { height: 1px; background: var(--border); margin: 48px 0; }
+  .number-prefix {
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(255,92,0,0.1);
+    line-height: 1;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -4px;
+    margin-bottom: -20px;
+    display: block;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--orange-glow);
+    color: var(--orange);
+    margin: 4px;
+    border: 1px solid rgba(255,92,0,0.3);
+  }
+
+  .grid-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  ul.styled-list {
+    list-style: none;
+    margin: 24px 0;
+  }
+  ul.styled-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--gray-400);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  ul.styled-list li::before {
+    content: '→';
+    color: var(--orange);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  ul.styled-list li:last-child { border-bottom: none; }
+  ul.styled-list strong { color: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ COVER -->
+<section class="cover">
+  <div class="cover-tag">Estrategia Digital World-Class · Mayo 2026</div>
+  <h1 class="cover-title">
+    Diseño Web de<br><span>Clase Mundial</span><br>para 2CR
+  </h1>
+  <p class="cover-subtitle">
+    Documento maestro de arquitectura UX, branding digital, copywriting ejecutivo, stack tecnológico y propuesta visual para posicionar a 2CR Consultoría y Servicios de Ingeniería Limitada como referente global en ingeniería, tecnología industrial e innovación operacional.
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Cliente</label><span>2CR Consultoría y Servicios de Ingeniería Ltda.</span></div>
+    <div class="cover-meta-item"><label>Tipo de Proyecto</label><span>Sitio Web Corporativo World-Class</span></div>
+    <div class="cover-meta-item"><label>Versión</label><span>v1.0 — Documento Estratégico</span></div>
+    <div class="cover-meta-item"><label>Stack</label><span>Next.js · Tailwind · Framer Motion</span></div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="doc-nav">
+  <a href="#diagnostico">Diagnóstico</a>
+  <a href="#posicionamiento">Posicionamiento</a>
+  <a href="#arquitectura">Arquitectura UX</a>
+  <a href="#visual">Sistema Visual</a>
+  <a href="#wireframe">Wireframe</a>
+  <a href="#copy">Copywriting</a>
+  <a href="#animaciones">Animaciones</a>
+  <a href="#mobile">Mobile</a>
+  <a href="#seo">SEO & Performance</a>
+  <a href="#stack">Stack Técnico</a>
+  <a href="#audiovisual">Audiovisual</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ DIAGNÓSTICO -->
+<section class="section" id="diagnostico">
+  <div class="section-tag">01 — Diagnóstico</div>
+  <h2 class="section-title">Auditoría del<br>Sitio Actual</h2>
+  <p class="section-subtitle">Un análisis honesto del punto de partida para entender exactamente qué debe transformarse y por qué.</p>
+
+  <div class="highlight">
+    <p class="highlight-quote">
+      El sitio actual de 2CR es <strong>funcional, pero no memorable</strong>. Comunica servicios, pero no transmite liderazgo. Tiene presencia, pero carece de autoridad. El objetivo del nuevo sitio no es renovar: es <strong>reinventar cómo el mundo ve a 2CR</strong>.
+    </p>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Dimensión</th>
+        <th>Sitio Actual</th>
+        <th>Referentes Globales</th>
+        <th>Brecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Impacto visual inicial</td><td class="badge-bad">Genérico, plantilla visible</td><td class="badge-good">Cinematográfico, inmersivo</td><td class="badge-bad">Alta</td></tr>
+      <tr><td>Hero section</td><td class="badge-bad">Texto sobre fondo estático</td><td class="badge-good">Video fullscreen + motion</td><td class="badge-bad">Alta</td></tr>
+      <tr><td>Narrativa de marca</td><td class="badge-warn">Descriptiva, no aspiracional</td><td class="badge-good">Posicionamiento emocional + técnico</td><td class="badge-warn">Media</td></tr>
+      <tr><td>Diferenciador SOMNI</td><td class="badge-bad">Enterrado en subpágina</td><td class="badge-good">Producto estrella con landing propio</td><td class="badge-bad">Alta</td></tr>
+      <tr><td>Evidencia de autoridad</td><td class="badge-warn">Certificaciones ISO sin impacto</td><td class="badge-good">Métricas, clientes, casos de éxito</td><td class="badge-warn">Media</td></tr>
+      <tr><td>Experiencia mobile</td><td class="badge-warn">Responsive básico</td><td class="badge-good">Mobile-first, gestos optimizados</td><td class="badge-warn">Media</td></tr>
+      <tr><td>Velocidad de carga</td><td class="badge-warn">WordPress/Elementor — moderada</td><td class="badge-good">Next.js SSG — ultra rápida</td><td class="badge-bad">Alta</td></tr>
+      <tr><td>SEO técnico</td><td class="badge-bad">Básico, sin estructura semántica</td><td class="badge-good">Schema markup, Core Web Vitals</td><td class="badge-bad">Alta</td></tr>
+      <tr><td>Internacionalización</td><td class="badge-warn">Bandera de idioma, sin i18n real</td><td class="badge-good">Multi-idioma, contenido localizado</td><td class="badge-warn">Media</td></tr>
+      <tr><td>Animaciones y motion</td><td class="badge-bad">Sin microinteracciones</td><td class="badge-good">Scroll-driven, parallax, Framer</td><td class="badge-bad">Alta</td></tr>
+      <tr><td>Propuesta de valor clara</td><td class="badge-warn">Múltiples párrafos, sin jerarquía</td><td class="badge-good">Una frase. Impacto total.</td><td class="badge-warn">Media</td></tr>
+    </tbody>
+  </table>
+
+  <div class="mt-48">
+    <h3 style="font-size:24px;font-weight:700;margin-bottom:24px;font-family:'Space Grotesk',sans-serif;">Oportunidades Clave Detectadas</h3>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">SOMNI como producto estrella</div>
+        <div class="card-body">El sistema de IA predictiva para fatiga es el activo diferenciador más poderoso. Merece una presencia de startup tecnológica dentro del sitio: su propio universo visual, narrativa y demo concept.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <div class="card-title">Certificaciones como símbolo de autoridad</div>
+        <div class="card-body">ISO 9001 / 14001 / 45001 no son "logos de footer". Son la prueba de un sistema de gestión de clase mundial. Deben ocupar un lugar protagónico con narrativa de excelencia.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌍</div>
+        <div class="card-title">Presencia binacional Chile-Perú</div>
+        <div class="card-body">Dos países, dos mercados, un solo estándar de calidad. Esta dualidad geográfica debe comunicarse como ventaja estratégica, no como dato de contacto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ POSICIONAMIENTO -->
+<section class="section" id="posicionamiento">
+  <div class="section-tag">02 — Posicionamiento</div>
+  <h2 class="section-title">La Nueva Identidad<br>Narrativa de 2CR</h2>
+  <p class="section-subtitle">Antes de diseñar una pantalla, se define qué lugar ocupa 2CR en la mente del mundo.</p>
+
+  <div class="grid-2">
+    <div>
+      <div class="card" style="height:100%;">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">Posicionamiento Central</div>
+        <div class="card-body">
+          <p style="margin-bottom:16px;">2CR no es una consultora de ingeniería tradicional. Es una <strong style="color:#fff;">plataforma de inteligencia operacional</strong> que combina ingeniería de precisión, tecnología predictiva y visión estratégica para transformar la seguridad, la eficiencia y la arquitectura de las industrias más exigentes del mundo.</p>
+          <p>El sitio debe posicionar a 2CR en la intersección de <strong style="color:var(--orange);">tech company + engineering firm + innovation lab</strong>.</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="card">
+        <div class="card-title">Territorio de Marca</div>
+        <div class="card-body">Ingeniería con inteligencia. Tecnología con propósito. Seguridad como sistema.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Personalidad Visual</div>
+        <div class="card-body">Autoridad técnica + elegancia contemporánea. Como Apple diseñando para Caterpillar.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Tono de Voz</div>
+        <div class="card-body">Directo, confiado, visionario. Sin jerga. Sin humildad innecesaria. Como un CEO global hablando a peers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight mt-48">
+    <p class="highlight-quote" style="font-size:28px;font-style:normal;font-weight:700;letter-spacing:-0.5px;">
+      "Donde la industria se vuelve <span style="color:var(--orange);">inteligente</span>."<br>
+      <span style="font-size:16px;font-weight:300;color:var(--gray-400);margin-top:12px;display:block;">— Propuesta de tagline central para 2CR —</span>
+    </p>
+  </div>
+
+  <div class="mt-48">
+    <h3 style="font-size:22px;font-weight:700;margin-bottom:32px;font-family:'Space Grotesk',sans-serif;">Arquetipos de Audiencia</h3>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">👔</div>
+        <div class="card-title">El Gerente de Operaciones</div>
+        <div class="card-body">Minería, transporte, concesiones. Busca soluciones probadas que reduzcan riesgo operacional. Necesita ver autoridad técnica y evidencia de resultados en <strong style="color:#fff;">menos de 8 segundos</strong>.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <div class="card-title">El Director de Proyecto</div>
+        <div class="card-body">Infraestructura, arquitectura, BIM. Necesita entender metodología, experiencia en proyectos complejos y gestión de riesgo. Valora <strong style="color:#fff;">precisión y claridad</strong>.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">El Inversionista / Socio Estratégico</div>
+        <div class="card-body">Busca un partner de largo plazo con visión internacional. Evalúa madurez corporativa, certificaciones y capacidad de escalar. Necesita sentir que está frente a <strong style="color:#fff;">una empresa de clase mundial</strong>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ ARQUITECTURA UX -->
+<section class="section" id="arquitectura">
+  <div class="section-tag">03 — Arquitectura UX</div>
+  <h2 class="section-title">Mapa de Navegación<br>y Flujo de Usuario</h2>
+  <p class="section-subtitle">Cada página responde una pregunta distinta del visitante. La arquitectura guía, no confunde.</p>
+
+  <div class="sitemap mt-32">
+    <div class="sitemap-level-0">
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">🏠 Home</div>
+        <ul class="sitemap-page-subs">
+          <li>Hero cinematográfico</li>
+          <li>Propuesta de valor</li>
+          <li>Servicios (overview)</li>
+          <li>SOMNI spotlight</li>
+          <li>Métricas de impacto</li>
+          <li>Clientes estratégicos</li>
+          <li>Certificaciones</li>
+          <li>CTA contacto</li>
+        </ul>
+      </div>
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">🏢 Nosotros</div>
+        <ul class="sitemap-page-subs">
+          <li>Historia de 2CR</li>
+          <li>Propósito y valores</li>
+          <li>Equipo directivo</li>
+          <li>Timeline 10 años</li>
+          <li>Presencia regional</li>
+          <li>Certificaciones SIG</li>
+        </ul>
+      </div>
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">⚙️ Servicios</div>
+        <ul class="sitemap-page-subs">
+          <li>Centro Control Carretera</li>
+          <li>SOMNI AI →</li>
+          <li>Arquitectura e Ingeniería</li>
+          <li>Metodología BIM</li>
+          <li>Línea Tecnológica</li>
+        </ul>
+      </div>
+      <div class="sitemap-page" style="border-color:var(--orange);background:var(--orange-glow);">
+        <div class="sitemap-page-title" style="color:var(--orange);">🤖 SOMNI AI ★</div>
+        <ul class="sitemap-page-subs">
+          <li>¿Qué es SOMNI?</li>
+          <li>Tecnología IA predictiva</li>
+          <li>Cómo funciona</li>
+          <li>Impacto operacional</li>
+          <li>Demo / Contacto</li>
+          <li>Casos de uso</li>
+        </ul>
+      </div>
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">📁 Proyectos</div>
+        <ul class="sitemap-page-subs">
+          <li>Galería de casos</li>
+          <li>Filtro por industria</li>
+          <li>Detalle de proyecto</li>
+          <li>Métricas de resultado</li>
+        </ul>
+      </div>
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">💡 Innovación</div>
+        <ul class="sitemap-page-subs">
+          <li>Tecnologías que usamos</li>
+          <li>I+D en 2CR</li>
+          <li>Blog / Insights</li>
+          <li>Visión de futuro</li>
+        </ul>
+      </div>
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">🤝 Clientes</div>
+        <ul class="sitemap-page-subs">
+          <li>Industrias que servimos</li>
+          <li>Logos estratégicos</li>
+          <li>Testimonios</li>
+        </ul>
+      </div>
+      <div class="sitemap-page">
+        <div class="sitemap-page-title">📬 Contacto</div>
+        <ul class="sitemap-page-subs">
+          <li>Formulario inteligente</li>
+          <li>Mapa Chile + Perú</li>
+          <li>WhatsApp directo</li>
+          <li>Agenda una reunión</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-48">
+    <h3 style="font-size:22px;font-weight:700;margin-bottom:32px;font-family:'Space Grotesk',sans-serif;">Principios UX Fundamentales</h3>
+    <div class="grid-2">
+      <div>
+        <ul class="styled-list">
+          <li><strong>Claridad en 3 segundos:</strong> El visitante debe entender qué hace 2CR, para quién y por qué es diferente antes del primer scroll.</li>
+          <li><strong>Jerarquía emocional primero:</strong> La emoción precede a la información. El hero section debe sentirse, no sólo leerse.</li>
+          <li><strong>SOMNI siempre visible:</strong> El producto IA debe tener un punto de entrada desde todas las secciones clave.</li>
+          <li><strong>Zero dead ends:</strong> Cada sección termina con un CTA relevante. El usuario nunca llega a un callejón sin salida.</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="styled-list">
+          <li><strong>Mobile-first sin concesiones:</strong> El 60%+ del tráfico B2B industrial llega desde dispositivos móviles. El diseño nace en 390px.</li>
+          <li><strong>Velocidad como UX:</strong> Cada milisegundo importa. LCP bajo 1.2s, CLS 0. La velocidad es una función de diseño.</li>
+          <li><strong>Scroll storytelling:</strong> La página de inicio cuenta una historia completa mientras el usuario hace scroll, como un documental interactivo.</li>
+          <li><strong>Confianza progresiva:</strong> Primero impacto → luego contexto → luego prueba social → luego conversión.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ VISUAL -->
+<section class="section" id="visual">
+  <div class="section-tag">04 — Sistema Visual</div>
+  <h2 class="section-title">Branding Digital &<br>Lenguaje Visual</h2>
+  <p class="section-subtitle">El sistema visual de 2CR debe comunicar autoridad técnica, innovación y modernidad en cada pixel.</p>
+
+  <h3 style="font-size:18px;font-weight:700;margin-bottom:24px;font-family:'Space Grotesk',sans-serif;">Paleta de Color Principal</h3>
+  <div class="palette">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0A0A0A;"></div>
+      <div class="swatch-info"><div class="swatch-name">Obsidian Black</div><div class="swatch-hex">#0A0A0A — Base primaria</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FF5C00;"></div>
+      <div class="swatch-info"><div class="swatch-name">2CR Orange</div><div class="swatch-hex">#FF5C00 — Acción y energía</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF;border-top:1px solid #333;"></div>
+      <div class="swatch-info"><div class="swatch-name">Pure White</div><div class="swatch-hex">#FFFFFF — Tipografía y contraste</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2D2D2D;"></div>
+      <div class="swatch-info"><div class="swatch-name">Graphite</div><div class="swatch-hex">#2D2D2D — Cards y superficies</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#666666;"></div>
+      <div class="swatch-info"><div class="swatch-name">Steel Gray</div><div class="swatch-hex">#666666 — Texto secundario</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:linear-gradient(135deg,#FF5C00,#FF8C00);"></div>
+      <div class="swatch-info"><div class="swatch-name">Gradient Energía</div><div class="swatch-hex">#FF5C00 → #FF8C00 — CTAs y highlights</div></div>
+    </div>
+  </div>
+
+  <h3 style="font-size:18px;font-weight:700;margin:40px 0 24px;font-family:'Space Grotesk',sans-serif;">Sistema Tipográfico</h3>
+  <div class="typo-specimen">
+    <div class="typo-label">Display / Hero Headlines</div>
+    <div style="font-size:clamp(36px,5vw,68px);font-weight:900;letter-spacing:-2.5px;line-height:1.0;font-family:'Space Grotesk',sans-serif;">Space Grotesk Black<br><span style="color:var(--orange);">900 Weight</span></div>
+    <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--border);">
+      <div class="typo-label">Body Copy / Párrafos</div>
+      <p style="font-size:17px;color:var(--gray-400);font-weight:300;max-width:600px;line-height:1.8;">Inter Light 300 — Para párrafos de lectura larga. Claridad máxima, mínima fatiga visual. Ideal para descripciones técnicas y contenido editorial.</p>
+    </div>
+    <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--border);">
+      <div class="typo-label">Labels / Tags / Navegación</div>
+      <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--orange);">INTER SEMIBOLD 600 · CAPS · TRACKING WIDE</p>
+    </div>
+  </div>
+
+  <div class="grid-2 mt-32">
+    <div class="card">
+      <div class="card-icon">📐</div>
+      <div class="card-title">Principios de Layout</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Máximo espacio blanco (dark space) — el respiro es lujo</li>
+          <li>Grid de 12 columnas. Máximo 1400px de contenedor</li>
+          <li>Secciones alternadas: dark / darker para ritmo visual</li>
+          <li>Bordes y líneas usados como elementos de diseño</li>
+          <li>Overflow intencional para crear profundidad</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-title">Estilo de Iconografía</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Línea fina (1.5px stroke) — estilo técnico/ingenieril</li>
+          <li>Set: Phosphor Icons o Heroicons (open source)</li>
+          <li>Tamaños: 24px funcional, 48px decorativo</li>
+          <li>Color: blanco o naranja según contexto de fondo</li>
+          <li>Sin relleno sólido — elegancia minimalista</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-32 card">
+    <div class="card-icon">📸</div>
+    <div class="card-title">Dirección de Fotografía</div>
+    <div class="card-body">
+      <p style="margin-bottom:16px;">La fotografía del sitio debe comunicar escala, precisión y modernidad. Nada de stock genérico de hombres con cascos sonriendo. La imagen de 2CR es:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <span class="pill">Fotografía industrial nocturna</span>
+        <span class="pill">Perspectivas dramáticas de infraestructura</span>
+        <span class="pill">Detalles de tecnología (pantallas, sensores)</span>
+        <span class="pill">Retratos ejecutivos cinematográficos</span>
+        <span class="pill">Vistas aéreas de proyectos</span>
+        <span class="pill">Tratamiento de color: alto contraste, tonos fríos</span>
+        <span class="pill">Duotone naranja / negro en imágenes de hero</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ WIREFRAME -->
+<section class="section" id="wireframe">
+  <div class="section-tag">05 — Wireframe Conceptual</div>
+  <h2 class="section-title">Arquitectura Visual<br>de la Homepage</h2>
+  <p class="section-subtitle">Sección por sección, cada bloque tiene un propósito narrativo preciso en la historia de 2CR.</p>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S01 — NAVEGACIÓN STICKY</span><span class="wf-height-badge">64px fija</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Navbar minimalista con glassmorphism al hacer scroll. Logo 2CR a la izquierda. Links centrales con hover animado. CTA "Contactar" en naranja a la derecha. Indicador de idioma ES/EN con transición suave.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">Logo 2CR (SVG)</span>
+        <span class="wf-el">Nosotros</span><span class="wf-el">Servicios ▾</span><span class="wf-el">SOMNI AI</span><span class="wf-el">Proyectos</span><span class="wf-el">Blog</span>
+        <span class="wf-el highlight-el">Contactar →</span>
+        <span class="wf-el">ES | EN</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S02 — HERO SECTION CINEMATOGRÁFICO</span><span class="wf-height-badge">100vh fullscreen</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Video loop de fondo: tráfico nocturno en carretera + minería + planos técnicos en movimiento. Overlay negro 60% con gradiente. Texto aparece con Framer Motion en cascada. Partículas SVG sutiles en fondo. Scroll indicator animado abajo.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">Video fullscreen loop (muted, autoplay)</span>
+        <span class="wf-el">Overlay degradado</span>
+        <span class="wf-el highlight-el">Supertítulo: etiqueta categoría</span>
+        <span class="wf-el highlight-el">H1: Headline principal (2 líneas max)</span>
+        <span class="wf-el">Subtítulo descriptivo (max 120 chars)</span>
+        <span class="wf-el highlight-el">CTA primario: "Ver Servicios"</span>
+        <span class="wf-el">CTA secundario: "SOMNI AI →"</span>
+        <span class="wf-el">Strip inferior: 4 métricas clave animadas</span>
+        <span class="wf-el">Scroll indicator con flecha flotante</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S03 — STRIP DE AUTORIDAD</span><span class="wf-height-badge">120px</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Banda negra con logos ISO 9001 / 14001 / 45001 + "Sistema de Gestión Integrada certificado" + países Chile & Perú. Efecto marquee lento si hay más elementos futuros.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">ISO 9001 logo</span><span class="wf-el highlight-el">ISO 14001 logo</span><span class="wf-el highlight-el">ISO 45001 logo</span>
+        <span class="wf-el">| Separador |</span><span class="wf-el">Texto: "SIG Certificado · Chile & Perú"</span>
+        <span class="wf-el">Logo 10 años 2CR</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S04 — PROPUESTA DE VALOR</span><span class="wf-height-badge">80vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Sección de texto grande con scroll reveal. Fondo oscuro ligeramente diferente. Texto grande que "escribe" al hacer scroll (typewriter effect suave). Línea de concepto de marca y servicios en párrafo premium.</div>
+      <div class="wf-elements">
+        <span class="wf-el">Tag: "¿Quiénes somos?"</span>
+        <span class="wf-el highlight-el">Statement de marca (texto grande 52px)</span>
+        <span class="wf-el">Párrafo complementario</span>
+        <span class="wf-el">Link: "Conoce nuestra historia →"</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S05 — SERVICIOS (GRID INTERACTIVO)</span><span class="wf-height-badge">90vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Cards de servicios en grid 2x3. Al hacer hover, la card se expande ligeramente con imagen de fondo sutil + descripción extendida + CTA. Cada card tiene ícono custom, número de orden y color de acento naranja.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">01 · Centro Control Carretera</span>
+        <span class="wf-el highlight-el">02 · SOMNI — IA Predictiva</span>
+        <span class="wf-el">03 · Arquitectura e Ingeniería</span>
+        <span class="wf-el">04 · Metodología BIM</span>
+        <span class="wf-el">05 · Línea Tecnológica</span>
+        <span class="wf-el">"Ver todos los servicios →"</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section" style="border-color:rgba(255,92,0,0.4);">
+    <div class="wf-header" style="background:rgba(255,92,0,0.08);"><span class="wf-section-name" style="color:var(--orange);">S06 — SOMNI AI SPOTLIGHT ★ (SECCIÓN HERO INTERNA)</span><span class="wf-height-badge" style="background:var(--orange);color:#fff;">100vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Sección especial de SOMNI con fondo completamente diferente — gradiente técnico azul noche / negro con partículas de datos. Estética tipo startup de IA. Mockup de pantalla flotante con interfaz de SOMNI. Texto con terminología tech.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">Fondo: Gradiente tech + partículas</span>
+        <span class="wf-el highlight-el">Badge: "IA Predictiva · Tecnología Propia"</span>
+        <span class="wf-el highlight-el">H2: Headline de SOMNI (impactante)</span>
+        <span class="wf-el">3 features clave con íconos</span>
+        <span class="wf-el highlight-el">Mockup de interfaz SOMNI</span>
+        <span class="wf-el">Stat: "X% reducción de incidentes"</span>
+        <span class="wf-el highlight-el">CTA: "Conoce SOMNI →"</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S07 — MÉTRICAS DE IMPACTO</span><span class="wf-height-badge">40vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">4 estadísticas clave en fila horizontal. Números animados con CountUp al entrar en viewport. Fondo negro con línea naranja arriba. Números grandes en naranja, labels en gris.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">+10 Años de experiencia</span>
+        <span class="wf-el highlight-el">+50 Proyectos ejecutados</span>
+        <span class="wf-el highlight-el">2 Países de operación</span>
+        <span class="wf-el highlight-el">3 Certificaciones ISO</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S08 — CASOS DE ÉXITO / PROYECTOS</span><span class="wf-height-badge">80vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Slider horizontal de proyectos destacados. Cada slide tiene imagen de fondo de alta calidad, nombre del proyecto, industria, año y CTA. Navegación por puntos y flechas. Efecto parallax en la imagen al cambiar slide.</div>
+      <div class="wf-elements">
+        <span class="wf-el">Tag sección</span><span class="wf-el">H2</span><span class="wf-el highlight-el">Slider de proyectos (3-5 casos)</span>
+        <span class="wf-el">Filtro: Minería / Vial / Arquitectura / BIM</span>
+        <span class="wf-el">"Ver todos los proyectos →"</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S09 — CLIENTES ESTRATÉGICOS</span><span class="wf-height-badge">30vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Logos de clientes en marquee lento. Filtro visual con overlay naranja al hover. Frase: "Empresas líderes confían en 2CR". Logos en blanco sobre negro.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">Logos en marquee scroll infinito</span><span class="wf-el">Hover: reveal nombre empresa</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S10 — CTA FINAL / CONTACTO</span><span class="wf-height-badge">60vh</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Sección de cierre con fondo naranja (el único bloque de color puro). Texto blanco grande. Dos opciones: Formulario rápido inline O botón WhatsApp para respuesta inmediata. Muy limpio, muy directo.</div>
+      <div class="wf-elements">
+        <span class="wf-el highlight-el">Fondo: #FF5C00 sólido</span>
+        <span class="wf-el">H2: "Hablemos de tu próximo proyecto"</span>
+        <span class="wf-el highlight-el">Formulario nombre + email + mensaje</span>
+        <span class="wf-el">O bien: WhatsApp directo</span>
+        <span class="wf-el">Datos Chile + Perú</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wireframe-section">
+    <div class="wf-header"><span class="wf-section-name">S11 — FOOTER</span><span class="wf-height-badge">Auto</span></div>
+    <div class="wf-body">
+      <div class="wf-description">Footer negro con logo grande, mapa de sitio en 4 columnas, redes sociales, certificaciones, copyright y política de privacidad. Línea naranja en la parte superior como cierre visual consistente.</div>
+      <div class="wf-elements">
+        <span class="wf-el">Logo 2CR grande</span><span class="wf-el">Tagline</span><span class="wf-el highlight-el">4 columnas de links</span>
+        <span class="wf-el">RRSS</span><span class="wf-el">ISOs</span><span class="wf-el">Contacto directo</span><span class="wf-el">Copyright</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ COPY -->
+<section class="section" id="copy">
+  <div class="section-tag">06 — Copywriting Premium</div>
+  <h2 class="section-title">Textos Ejecutivos<br>Sección a Sección</h2>
+  <p class="section-subtitle">Cada palabra está calibrada para impactar, posicionar y convertir. Este es el copy sugerido para las secciones clave.</p>
+
+  <div class="copy-block">
+    <div class="copy-context">Homepage · Hero · Supertítulo</div>
+    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600;">Ingeniería · Tecnología · Innovación Operacional</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-context">Homepage · Hero · H1 Principal</div>
+    <div class="copy-headline">Donde la industria<br>se vuelve <span class="text-orange">inteligente.</span></div>
+    <div class="copy-body">Integramos ingeniería de precisión, inteligencia artificial y metodologías de clase mundial para transformar la seguridad operacional, la arquitectura industrial y la gestión de proyectos complejos en Latinoamérica.</div>
+    <a href="#" class="copy-cta">Explorar Servicios →</a>
+  </div>
+
+  <div class="grid-copy mt-32">
+    <div class="copy-block">
+      <div class="copy-context">Sección SOMNI · H2</div>
+      <div class="copy-headline">La fatiga que no ves<br>es el riesgo que <span class="text-orange">más cuesta.</span></div>
+      <div class="copy-body">SOMNI es el sistema de inteligencia artificial de 2CR que identifica y predice estados de fatiga y somnolencia en operadores industriales antes de que se conviertan en accidentes. Tecnología propia. Precisión comprobada. Cero tolerancia al riesgo.</div>
+    </div>
+    <div class="copy-block">
+      <div class="copy-context">Servicios · Centro Control Carretera</div>
+      <div class="copy-headline">Cada kilómetro de<br>carretera, bajo <span class="text-orange">control.</span></div>
+      <div class="copy-body">Operamos centros de control vial de alta tecnología que monitorean, analizan y responden en tiempo real a las condiciones de toda la red. Seguridad vial que no duerme.</div>
+    </div>
+    <div class="copy-block">
+      <div class="copy-context">Servicios · Arquitectura BIM</div>
+      <div class="copy-headline">Ingeniería que se<br>ve antes de <span class="text-orange">construirse.</span></div>
+      <div class="copy-body">Con metodología BIM de última generación, diseñamos, coordinamos y gestionamos proyectos de arquitectura e ingeniería con una precisión que reduce errores, optimiza costos y acelera decisiones.</div>
+    </div>
+    <div class="copy-block">
+      <div class="copy-context">Sección Nosotros · Tagline</div>
+      <div class="copy-headline">Tres generaciones.<br>Una sola <span class="text-orange">obsesión.</span></div>
+      <div class="copy-body">Nacimos de la convergencia de tres disciplinas: administración, informática y arquitectura. En 10 años construimos un sistema de excelencia certificado internacionalmente y una reputación ganada proyecto a proyecto.</div>
+    </div>
+  </div>
+
+  <div class="copy-block mt-32">
+    <div class="copy-context">Homepage · Strip de Métricas · Los 4 números que definen a 2CR</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:16px;">
+      <div style="text-align:center;">
+        <div style="font-size:56px;font-weight:900;color:var(--orange);font-family:'Space Grotesk',sans-serif;letter-spacing:-2px;">+10</div>
+        <div style="font-size:13px;color:var(--gray-400);margin-top:8px;">Años transformando industrias en Latinoamérica</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:56px;font-weight:900;color:var(--orange);font-family:'Space Grotesk',sans-serif;letter-spacing:-2px;">3</div>
+        <div style="font-size:13px;color:var(--gray-400);margin-top:8px;">Certificaciones ISO del Sistema de Gestión Integrada</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:56px;font-weight:900;color:var(--orange);font-family:'Space Grotesk',sans-serif;letter-spacing:-2px;">2</div>
+        <div style="font-size:13px;color:var(--gray-400);margin-top:8px;">Países de operación directa: Chile y Perú</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:56px;font-weight:900;color:var(--orange);font-family:'Space Grotesk',sans-serif;letter-spacing:-2px;">IA</div>
+        <div style="font-size:13px;color:var(--gray-400);margin-top:8px;">Tecnología propia de predicción de fatiga operacional</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-block mt-32">
+    <div class="copy-context">Sección Contacto · H2 + Sub</div>
+    <div class="copy-headline">¿Listo para transformar<br>tu operación?</div>
+    <div class="copy-body">Cuéntanos tu desafío. Nuestros ingenieros y especialistas están disponibles para diseñar una solución a la medida de tu industria. Respondemos en menos de 24 horas.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ ANIMACIONES -->
+<section class="section" id="animaciones">
+  <div class="section-tag">07 — Motion & Animaciones</div>
+  <h2 class="section-title">Sistema de Motion<br>con Framer Motion</h2>
+  <p class="section-subtitle">Las animaciones no son decoración: son la diferencia entre un sitio que se ve y uno que se siente.</p>
+
+  <div class="grid-3">
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Page Load</div>
+      <div class="anim-name">Hero Entrance Cascade</div>
+      <div class="anim-desc">Tag → H1 → Subtitle → CTAs aparecen en secuencia con fadeUp + delay de 120ms entre elementos. Duración total: 1.2s. Easing: easeOut. El video de fondo hace fade-in suave de 0→60% opacidad en 2s.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Scroll Enter Viewport</div>
+      <div class="anim-name">Section Reveal</div>
+      <div class="anim-desc">Cada sección entra con translateY(40px) → 0 + opacity 0→1. Framer Motion whileInView con threshold 0.2. Stagger de 80ms entre cards hijas. Suave, elegante, nunca agresivo.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Hover</div>
+      <div class="anim-name">Card Lift</div>
+      <div class="anim-desc">Cards de servicios y proyectos: scale(1.02) + box-shadow naranja sutil al hover. Transition 200ms cubic-bezier. El ícono hace rotate(5deg) y el texto secundario aparece con fade.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Scroll</div>
+      <div class="anim-name">Parallax Layers</div>
+      <div class="anim-desc">En el hero y sección de proyectos, el fondo se mueve a 0.5x la velocidad del scroll (useScroll + useTransform de Framer). Crea sensación de profundidad cinematográfica sin impactar performance.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Viewport Enter</div>
+      <div class="anim-name">CountUp Numbers</div>
+      <div class="anim-desc">Las métricas de impacto (10 años, 50+ proyectos) se animan con react-countup cuando entran en viewport. Duración 2s, easing easeOut. Efecto de "reloj" que cuenta hacia el valor final.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Continuous</div>
+      <div class="anim-name">SOMNI Data Particles</div>
+      <div class="anim-desc">En la sección de SOMNI, partículas SVG flotantes simulan datos en tiempo real. Canvas o SVG animado con puntos que se conectan brevemente. Muy sutil, 10% opacity. Refuerza la narrativa tech/IA.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Continuous</div>
+      <div class="anim-name">Logo Marquee</div>
+      <div class="anim-desc">Los logos de clientes deslizan horizontalmente con CSS animation infinita (translateX). Velocidad baja: 30s por ciclo. Se pausa al hover. Sin JavaScript, alto performance.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Hover Navbar Link</div>
+      <div class="anim-name">Link Underline Draw</div>
+      <div class="anim-desc">Los links de navegación tienen una línea naranja que se "dibuja" de izquierda a derecha al hover (scaleX 0→1). Efecto refinado tipo boutique de diseño. 200ms ease.</div>
+    </div>
+    <div class="anim-card">
+      <div class="anim-trigger">Trigger: Scroll — Sección Nosotros</div>
+      <div class="anim-name">Timeline Reveal</div>
+      <div class="anim-desc">El timeline de 10 años de 2CR se "construye" al hacer scroll: la línea vertical crece progresivamente y los hitos aparecen alternando izquierda/derecha con fadeIn. Narrativo y elegante.</div>
+    </div>
+  </div>
+
+  <div class="highlight mt-32">
+    <p class="highlight-quote">
+      Regla de oro del motion design en este proyecto: <strong>cada animación debe ser invisible la primera vez que la ves</strong>. El usuario no debe pensar "qué animación tan bonita". Debe sentir que la página simplemente se siente viva y premium.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ MOBILE -->
+<section class="section" id="mobile">
+  <div class="section-tag">08 — Experiencia Mobile</div>
+  <h2 class="section-title">Mobile-First:<br>Sin Compromisos</h2>
+  <p class="section-subtitle">El diseño nace en 390px (iPhone 15) y escala hacia arriba. No al revés.</p>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:20px;font-family:'Space Grotesk',sans-serif;">Decisiones de Diseño Mobile</h3>
+      <ul class="styled-list">
+        <li><strong>Hero mobile:</strong> Video reemplazado por imagen estática optimizada (WebP). H1 máx 3 líneas. CTAs full-width en stack vertical.</li>
+        <li><strong>Navegación:</strong> Hamburger menu con sliding panel desde derecha. Animación suave. Cierra al tocar fuera.</li>
+        <li><strong>Cards de servicios:</strong> Stack vertical, full-width, con swipe gesture si son 5+.</li>
+        <li><strong>Métricas:</strong> 2x2 grid en mobile, centradas.</li>
+        <li><strong>SOMNI section:</strong> Mockup de interfaz cambia a vista vertical. Texto arriba, imagen abajo.</li>
+        <li><strong>Footer:</strong> Accordion collapsible para las 4 columnas de links.</li>
+        <li><strong>CTA flotante:</strong> Botón WhatsApp fijo en esquina inferior derecha. Siempre visible.</li>
+        <li><strong>Touch targets:</strong> Mínimo 48x48px. Espaciado entre links de 8px mínimo.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:20px;font-family:'Space Grotesk',sans-serif;">Performance Mobile</h3>
+      <ul class="styled-list">
+        <li><strong>Imágenes responsive:</strong> Next.js Image component con srcset automático. AVIF/WebP según soporte del browser.</li>
+        <li><strong>Font loading:</strong> font-display: swap. Preload de Space Grotesk y Inter. Subsetting solo caracteres usados.</li>
+        <li><strong>JS deferido:</strong> Animaciones de scroll solo se inicializan después de interacción del usuario en mobile.</li>
+        <li><strong>Lazy loading:</strong> Todo lo que está below-the-fold se carga con intersection observer.</li>
+        <li><strong>Objetivo Lighthouse Mobile:</strong> Performance ≥90, Accessibility ≥95, SEO 100, Best Practices 100.</li>
+      </ul>
+      <div class="card mt-32">
+        <div class="card-title">Breakpoints del Sistema</div>
+        <div class="card-body" style="font-family:monospace;font-size:13px;line-height:2;">
+          sm: 390px (iPhone 15)<br>
+          md: 768px (iPad Mini)<br>
+          lg: 1024px (iPad Pro / Desktop pequeño)<br>
+          xl: 1280px (Desktop estándar)<br>
+          2xl: 1536px (Desktop grande)<br>
+          3xl: 1920px (UltraWide — max-width container)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ SEO -->
+<section class="section" id="seo">
+  <div class="section-tag">09 — SEO & Performance</div>
+  <h2 class="section-title">Visibilidad Internacional<br>desde el Día Uno</h2>
+  <p class="section-subtitle">El mejor sitio del mundo no sirve si nadie lo encuentra. El SEO es parte de la arquitectura, no un add-on.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">SEO Técnico</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Schema.org JSON-LD: Organization, Service, LocalBusiness</li>
+          <li>Sitemap XML dinámico (Next.js)</li>
+          <li>robots.txt optimizado</li>
+          <li>Canonical URLs por idioma</li>
+          <li>hreflang ES/EN para internacionalización</li>
+          <li>Open Graph + Twitter Cards para redes sociales</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Core Web Vitals</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li><strong>LCP (Largest Contentful Paint):</strong> &lt; 1.2s</li>
+          <li><strong>INP (Interaction to Next Paint):</strong> &lt; 100ms</li>
+          <li><strong>CLS (Cumulative Layout Shift):</strong> &lt; 0.05</li>
+          <li>Imágenes con dimensiones fijas (sin layout shift)</li>
+          <li>Preconnect a dominios críticos (fonts, CDN)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">Palabras Clave Estratégicas</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>"Consultoría ingeniería minería Chile"</li>
+          <li>"Centro control carretera Chile"</li>
+          <li>"Software fatiga conductores IA"</li>
+          <li>"Metodología BIM consultora"</li>
+          <li>"Seguridad vial tecnología"</li>
+          <li>"SOMNI fatiga somnolencia minería"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ STACK -->
+<section class="section" id="stack">
+  <div class="section-tag">10 — Stack Tecnológico</div>
+  <h2 class="section-title">Arquitectura Técnica<br>Escalable y World-Class</h2>
+  <p class="section-subtitle">Tecnologías elegidas por rendimiento, escalabilidad, comunidad y capacidad de crecimiento internacional.</p>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px;">
+    <div class="tech-row">
+      <div class="tech-category">Frontend</div>
+      <div class="tech-name">Next.js 15</div>
+      <div class="tech-reason">App Router + Server Components. SSG para páginas estáticas, SSR para contenido dinámico. Mejor rendimiento SEO y velocidad de carga del mercado.</div>
+      <div class="tech-badge">Core</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Estilos</div>
+      <div class="tech-name">Tailwind CSS v4</div>
+      <div class="tech-reason">Utilidad-first, sin CSS custom innecesario. Design tokens centralizados. Build extremadamente rápido. Perfecta integración con el sistema visual definido.</div>
+      <div class="tech-badge">Core</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Animaciones</div>
+      <div class="tech-name">Framer Motion</div>
+      <div class="tech-reason">La librería de animación más poderosa para React. Scroll-driven animations, gestos, exit animations. Permite implementar el 100% del sistema de motion definido.</div>
+      <div class="tech-badge">Core</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">CMS</div>
+      <div class="tech-name">Sanity.io v3</div>
+      <div class="tech-reason">CMS headless con API GraphQL. El equipo de 2CR puede editar contenido (blog, proyectos, clientes) sin tocar código. Schema tipado con TypeScript. CDN global.</div>
+      <div class="tech-badge">Recomendado</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Hosting</div>
+      <div class="tech-name">Vercel</div>
+      <div class="tech-reason">Edge Network global. Deploy automático desde GitHub. Analytics integrado. Preview URLs por cada PR. Zero-config para Next.js. Escala automáticamente.</div>
+      <div class="tech-badge">Recomendado</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Formularios</div>
+      <div class="tech-name">React Hook Form + Resend</div>
+      <div class="tech-reason">Formularios ultra-rápidos sin re-renders. Validación con Zod. Resend para emails transaccionales con templates HTML profesionales.</div>
+      <div class="tech-badge">Integración</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Analytics</div>
+      <div class="tech-name">Vercel Analytics + Posthog</div>
+      <div class="tech-reason">Analytics de performance (Core Web Vitals reales) + analytics de comportamiento (funnel, heatmaps). Privacidad por defecto, sin cookies de terceros.</div>
+      <div class="tech-badge">Analytics</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Internacionalización</div>
+      <div class="tech-name">next-intl</div>
+      <div class="tech-reason">i18n nativo para Next.js App Router. Rutas /es/* y /en/* automáticas. Traducciones en JSON. Preparado para expansión a PT (Brasil) y EN (mercado global).</div>
+      <div class="tech-badge">Internacional</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">Video</div>
+      <div class="tech-name">Cloudflare Stream</div>
+      <div class="tech-reason">CDN de video global. Videos del hero optimizados automáticamente por conexión. Carga adaptativa. HLS streaming para mobile. Alternativa: Mux.com.</div>
+      <div class="tech-badge">Media</div>
+    </div>
+    <div class="tech-row">
+      <div class="tech-category">TypeScript</div>
+      <div class="tech-name">TypeScript strict</div>
+      <div class="tech-reason">100% del código tipado. Elimina errores en producción. Base sólida para escalabilidad. Autodocumentación del código para el equipo técnico futuro.</div>
+      <div class="tech-badge">Calidad</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ AUDIOVISUAL -->
+<section class="section" id="audiovisual">
+  <div class="section-tag">11 — Estrategia Audiovisual</div>
+  <h2 class="section-title">Contenido Visual &<br>Audiovisual Premium</h2>
+  <p class="section-subtitle">El contenido visual no se elige, se produce. Esta es la dirección artística para los activos de 2CR.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <div class="card-title">Video Principal del Hero</div>
+      <div class="card-body">
+        <p style="margin-bottom:16px;">Se recomienda producir un video corporativo de 60-90 segundos con los siguientes planos:</p>
+        <ul class="styled-list">
+          <li>Carretera nocturna con tráfico timelapse vista aérea</li>
+          <li>Centro de control con pantallas de monitoreo en operación</li>
+          <li>Detalle de interfaz SOMNI en pantalla real</li>
+          <li>Planos BIM rotando en modelo 3D</li>
+          <li>Equipo de profesionales trabajando (plano medio, editorial)</li>
+          <li>Infraestructura construida: exteriores con luz dorada</li>
+        </ul>
+        <p style="margin-top:16px;font-size:13px;color:var(--gray-600);">Hasta contar con producción propia: usar Envato Elements / Artgrid para stock cinematográfico industrial premium. Costo: ~$16 USD/mes.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📷</div>
+      <div class="card-title">Sesión de Fotografía Corporativa</div>
+      <div class="card-body">
+        <p style="margin-bottom:16px;">Inversión recomendada: una sesión fotográfica de medio día con dirección artística. Produce:</p>
+        <ul class="styled-list">
+          <li>Retratos ejecutivos del equipo (fondo oscuro, iluminación Rembrandt)</li>
+          <li>Planos de trabajo real: reuniones, revisión de planos, monitores</li>
+          <li>Fotografías en terreno: obras, carreteras, instalaciones</li>
+          <li>Detalle de equipos y herramientas tecnológicas</li>
+        </ul>
+        <p style="margin-top:16px;font-size:13px;color:var(--gray-600);">Tratamiento de post: alto contraste, temperatura fría, viñeta sutil. Consistencia visual total.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-32">
+    <div class="card-icon">🤖</div>
+    <div class="card-title">Activos Visuales para SOMNI</div>
+    <div class="card-body">
+      <p>SOMNI requiere activos visuales propios que comuniquen tecnología e inteligencia:</p>
+      <ul class="styled-list">
+        <li><strong>Mockup de interfaz:</strong> Diseñar una pantalla del dashboard de SOMNI con datos ficticios pero realistas. Mostrar alertas, gráficos de fatiga, mapa de activos. Usar Figma → exportar como PNG/WebP.</li>
+        <li><strong>Ícono / logo de SOMNI:</strong> Crear una identidad visual propia para SOMNI que funcione tanto dentro del sitio de 2CR como de manera independiente (preparando el terreno para un producto SaaS futuro).</li>
+        <li><strong>Animación demo:</strong> GIF o video corto de 5 segundos mostrando la detección de fatiga en tiempo real. Potente para conversión.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="section-tag">12 — Roadmap de Desarrollo</div>
+  <h2 class="section-title">De la Estrategia<br>al Sitio Publicado</h2>
+  <p class="section-subtitle">Un plan realista de 10 semanas para lanzar el sitio más potente que 2CR ha tenido.</p>
+
+  <div class="grid-2 mt-32">
+    <div class="card" style="border-color:var(--orange);">
+      <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:16px;">FASE 1 · Semanas 1–2</div>
+      <div class="card-title">Fundamentos & Diseño</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Setup del repositorio Next.js + Tailwind + TypeScript</li>
+          <li>Design system en Figma: colores, tipografía, componentes base</li>
+          <li>Wireframes de alta fidelidad para las 10 páginas principales</li>
+          <li>Definición final de copy con cliente</li>
+          <li>Recopilación de activos: logos, fotos, certificaciones</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:16px;">FASE 2 · Semanas 3–5</div>
+      <div class="card-title">Desarrollo Core</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Desarrollo de Homepage completa con animaciones</li>
+          <li>Páginas de servicios (5 páginas)</li>
+          <li>Landing de SOMNI AI (página especial)</li>
+          <li>Integración de CMS Sanity (blog, proyectos)</li>
+          <li>Formulario de contacto + integración WhatsApp</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:16px;">FASE 3 · Semanas 6–8</div>
+      <div class="card-title">Refinamiento & Contenido</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Secciones secundarias: Nosotros, Proyectos, Clientes</li>
+          <li>Internacionalización ES/EN</li>
+          <li>SEO técnico: Schema, sitemap, metatags</li>
+          <li>Optimización de imágenes y video</li>
+          <li>Testing en dispositivos reales</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:16px;">FASE 4 · Semanas 9–10</div>
+      <div class="card-title">QA, Launch & Post-Launch</div>
+      <div class="card-body">
+        <ul class="styled-list">
+          <li>Auditoría Lighthouse: Performance, Accessibility, SEO</li>
+          <li>Cross-browser testing (Chrome, Safari, Firefox, Edge)</li>
+          <li>Configuración DNS + SSL + dominio</li>
+          <li>Configuración de Analytics y tracking de conversiones</li>
+          <li>Lanzamiento → monitoreo primera semana</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight mt-48">
+    <p class="highlight-quote">
+      Este documento no es solo una guía de diseño. Es el <strong>manual de identidad digital de 2CR para la próxima década</strong>. Cada decisión aquí tomada está orientada a posicionar a 2CR no donde está el mercado industrial hoy, sino donde estará mañana: <strong>en la intersección de la ingeniería de precisión y la inteligencia artificial aplicada</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="doc-footer-title">2CR · <span style="color:var(--orange);">World-Class</span> Web Strategy</div>
+  <div class="doc-footer-sub">Documento preparado como guía estratégica maestra · 2026 · Confidencial</div>
+  <div style="margin-top:32px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+    <span class="pill">Next.js 15</span>
+    <span class="pill">Tailwind CSS v4</span>
+    <span class="pill">Framer Motion</span>
+    <span class="pill">Sanity CMS</span>
+    <span class="pill">Vercel Edge</span>
+    <span class="pill">TypeScript strict</span>
+    <span class="pill">ISO 9001 · 14001 · 45001</span>
+  </div>
+</div>
+
+</body>
+</html>

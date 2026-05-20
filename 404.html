@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página no encontrada — 2CR Ingeniería</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --clr-orange: #FF5C00;
+    --clr-black:  #0A0A0A;
+    --clr-surface:#161616;
+    --font-head:  'Montserrat', Arial, sans-serif;
+    --font-body:  'Inter', Arial, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--clr-black);
+    color: #fff;
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  /* Número 404 grande */
+  .err-code {
+    font-family: var(--font-head);
+    font-size: clamp(80px, 18vw, 160px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -6px;
+    background: linear-gradient(135deg, var(--clr-orange) 0%, #FF8C42 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    user-select: none;
+  }
+
+  /* Línea divisoria */
+  .err-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--clr-orange);
+    margin: 24px auto;
+    opacity: 0.6;
+  }
+
+  .err-title {
+    font-family: var(--font-head);
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .err-body {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  /* Botón principal */
+  .err-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--clr-orange);
+    color: #fff;
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 3px;
+    transition: background .2s, transform .2s;
+  }
+  .err-btn:hover {
+    background: #e54e00;
+    transform: translateY(-2px);
+  }
+
+  /* Logo arriba */
+  .err-logo {
+    margin-bottom: 48px;
+  }
+  .err-logo img {
+    height: 88px;
+    width: auto;
+    /* El logo naranja tiene fondo negro: screen lo hace transparente */
+    mix-blend-mode: screen;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
+    /* Leve glow naranja para presencia */
+    filter: drop-shadow(0 0 18px rgba(255,92,0,0.45))
+            drop-shadow(0 0 40px rgba(255,92,0,0.15));
+  }
+  .err-logo-text {
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--clr-orange);
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400&display=swap"
+      rel="stylesheet" media="print" onload="this.media='all'">
+</head>
+<body>
+
+  <div class="err-logo">
+    <img src="logo-2cr-naranja.png" alt="2CR Ingeniería"
+         onerror="this.src='Logo 2CR_PRO naranja full.png';this.onerror=function(){this.src='logo-2cr-pro.png';this.onerror=function(){this.style.display='none';document.querySelector('.err-logo-text').style.display='block';}};">
+    <div class="err-logo-text" style="display:none;">2CR</div>
+  </div>
+
+  <div class="err-code">404</div>
+
+  <div class="err-divider"></div>
+
+  <h1 class="err-title">Página no encontrada</h1>
+  <p class="err-body">
+    El recurso que buscas no existe o fue movido.<br>
+    Vuelve al inicio y retoma desde allí.
+  </p>
+
+  <a href="/" class="err-btn">
+    ← Volver al inicio
+  </a>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad — 2CR Consultoría y Servicios de Ingeniería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:#0A0A0A; --deep:#111; --orange:#FF5C00;
+  --white:#fff; --g300:#bbb; --g500:#777; --g700:#444;
+  --border:#272727;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;line-height:1.7;}
+
+nav {
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 72px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;}
+.nav-logo img{height:40px;width:auto;}
+.nav-back{
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;
+  color:var(--g500);text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.2s;
+}
+.nav-back:hover{color:var(--white);}
+
+.hero-pp {
+  padding:80px 72px 60px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,var(--deep) 0%,var(--black) 100%);
+}
+.hero-pp .tag {
+  font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.hero-pp .tag::before{content:'';display:block;width:22px;height:1px;background:var(--orange);}
+.hero-pp h1 {
+  font-family:'Montserrat',sans-serif;font-weight:900;
+  font-size:clamp(32px,4vw,52px);letter-spacing:-2px;line-height:1.05;
+  margin-bottom:16px;
+}
+.hero-pp p {
+  font-size:16px;color:var(--g300);font-weight:300;max-width:620px;
+}
+.hero-pp .update {
+  display:inline-block;margin-top:20px;
+  font-size:11px;color:var(--g700);
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);border-radius:6px;
+  padding:6px 14px;letter-spacing:0.5px;
+}
+
+.content {
+  max-width:860px;margin:0 auto;
+  padding:72px 72px 100px;
+}
+
+h2 {
+  font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;
+  letter-spacing:-0.5px;margin:52px 0 16px;
+  padding-left:16px;border-left:3px solid var(--orange);
+}
+h2:first-child{margin-top:0;}
+
+h3 {
+  font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;
+  color:var(--orange);margin:28px 0 10px;
+}
+
+p {margin-bottom:18px;font-size:15px;color:var(--g300);line-height:1.82;}
+p strong{color:var(--white);}
+
+ul {
+  list-style:none;margin:0 0 18px;padding:0;
+}
+ul li {
+  font-size:15px;color:var(--g300);
+  padding:8px 0 8px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  position:relative;line-height:1.6;
+}
+ul li::before{
+  content:'→';color:var(--orange);
+  position:absolute;left:0;top:9px;font-size:12px;
+}
+ul li:last-child{border-bottom:none;}
+
+.highlight-box {
+  background:rgba(255,92,0,0.06);
+  border:1px solid rgba(255,92,0,0.2);
+  border-radius:12px;padding:24px 28px;
+  margin:28px 0;
+}
+.highlight-box p{margin-bottom:0;color:var(--g300);}
+
+.contact-box {
+  background:var(--deep);border:1px solid var(--border);
+  border-radius:14px;padding:32px;margin-top:48px;
+}
+.contact-box h3{margin-top:0;}
+.contact-info{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.ci-item{
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:8px;padding:16px;
+}
+.ci-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g700);font-weight:600;margin-bottom:6px;}
+.ci-value{font-size:14px;color:var(--white);font-weight:500;}
+.ci-value a{color:var(--orange);text-decoration:none;}
+
+.divider{height:1px;background:var(--border);margin:48px 0;}
+
+footer {
+  background:var(--black);border-top:1px solid var(--border);
+  padding:28px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--g700);flex-wrap:wrap;gap:12px;
+}
+footer a{color:var(--g500);text-decoration:none;}
+footer a:hover{color:var(--orange);}
+
+@media(max-width:768px){
+  nav,.hero-pp,.content,footer{padding-left:24px;padding-right:24px;}
+  .contact-info{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Logo 2CR_PRO.png" alt="2CR" onerror="this.style.display='none'">
+  </a>
+  <a href="index.html" class="nav-back">← Volver al sitio</a>
+</nav>
+
+<section class="hero-pp">
+  <div class="tag">Legal · Privacidad</div>
+  <h1>Política de<br>Privacidad</h1>
+  <p>En 2CR Consultoría y Servicios de Ingeniería Limitada nos comprometemos a proteger la privacidad y los datos personales de quienes interactúan con nuestros servicios y sitio web.</p>
+  <span class="update">Última actualización: Mayo 2026 · Vigente desde el 27/05/2026</span>
+</section>
+
+<div class="content">
+
+  <h2>1. Identidad del Responsable</h2>
+  <p><strong>2CR Consultoría y Servicios de Ingeniería Limitada</strong> (en adelante "2CR"), con domicilio en Chile y presencia operacional en Perú, es la entidad responsable del tratamiento de los datos personales recopilados a través de este sitio web y en el contexto de nuestros servicios.</p>
+  <p>Nos regimos por la <strong>Ley N° 19.628 sobre Protección de la Vida Privada</strong> de la República de Chile y, en lo aplicable, por las normativas vigentes en Perú.</p>
+
+  <h2>2. Datos que Recopilamos</h2>
+  <p>Recopilamos únicamente los datos necesarios para prestar nuestros servicios y atender sus consultas. Esto puede incluir:</p>
+  <ul>
+    <li><strong>Datos de contacto:</strong> nombre, apellido, correo electrónico y teléfono, proporcionados voluntariamente a través del formulario de contacto.</li>
+    <li><strong>Datos de navegación:</strong> información técnica como dirección IP, tipo de dispositivo y navegador, páginas visitadas y tiempo de visita, obtenida mediante cookies analíticas.</li>
+    <li><strong>Datos de comunicaciones:</strong> contenido de los mensajes enviados a través de nuestros canales de atención (correo electrónico, WhatsApp, formulario web).</li>
+    <li><strong>Datos de contexto laboral:</strong> cargo, empresa y país, cuando sea relevante para la prestación de servicios B2B.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <p>2CR <strong>no recopila ni procesa</strong> datos sensibles como información médica, datos financieros, filiación política o religiosa, ni información de menores de edad.</p>
+  </div>
+
+  <h2>3. Finalidad del Tratamiento</h2>
+  <p>Los datos personales que recopilamos son utilizados exclusivamente para:</p>
+  <ul>
+    <li>Responder a sus consultas y solicitudes de información sobre nuestros servicios.</li>
+    <li>Gestionar relaciones comerciales y coordinar la prestación de servicios contratados.</li>
+    <li>Enviar comunicaciones de interés sobre nuestros servicios, cuando usted lo haya autorizado expresamente.</li>
+    <li>Mejorar la experiencia de navegación en nuestro sitio web mediante análisis estadístico agregado y anónimo.</li>
+    <li>Cumplir con obligaciones legales aplicables en Chile y Perú.</li>
+  </ul>
+
+  <h2>4. Base Legal del Tratamiento</h2>
+  <ul>
+    <li><strong>Consentimiento:</strong> cuando usted completa nuestro formulario de contacto o nos escribe directamente.</li>
+    <li><strong>Interés legítimo:</strong> para el análisis estadístico de navegación orientado a mejorar nuestros servicios digitales.</li>
+    <li><strong>Ejecución de contrato:</strong> cuando los datos son necesarios para prestar un servicio contratado.</li>
+    <li><strong>Obligación legal:</strong> cuando la normativa chilena o peruana lo requiera.</li>
+  </ul>
+
+  <h2>5. Uso de Cookies</h2>
+  <p>Este sitio web utiliza cookies técnicas (necesarias para el funcionamiento) y cookies analíticas (para comprender cómo se usa el sitio). No utilizamos cookies de publicidad ni compartimos datos de navegación con plataformas de terceros con fines publicitarios.</p>
+  <p>Puede configurar su navegador para rechazar cookies, aunque esto puede limitar algunas funcionalidades del sitio.</p>
+
+  <h2>6. Conservación de Datos</h2>
+  <p>Los datos personales se conservan durante el tiempo estrictamente necesario para la finalidad para la que fueron recopilados. Con carácter general:</p>
+  <ul>
+    <li>Datos de contacto de clientes activos: mientras dure la relación comercial y hasta 5 años después de su término.</li>
+    <li>Datos de consultas o contactos sin relación comercial posterior: máximo 1 año desde la última comunicación.</li>
+    <li>Datos de navegación anonimizados: máximo 13 meses.</li>
+  </ul>
+
+  <h2>7. Destinatarios y Transferencias</h2>
+  <p>2CR no vende, arrienda ni cede datos personales a terceros. Los datos únicamente pueden ser compartidos con:</p>
+  <ul>
+    <li><strong>Proveedores de servicios tecnológicos</strong> necesarios para operar nuestro sitio web y sistemas de comunicación (alojamiento web, correo electrónico), quienes actúan como encargados del tratamiento bajo contrato de confidencialidad.</li>
+    <li><strong>Autoridades competentes</strong> cuando sea requerido por ley o resolución judicial.</li>
+    <li><strong>Socios estratégicos</strong> (como SOMNI) únicamente en el contexto de proyectos específicos y con su conocimiento previo.</li>
+  </ul>
+
+  <h2>8. Sus Derechos</h2>
+  <p>De acuerdo con la Ley N° 19.628 y la normativa vigente, usted tiene derecho a:</p>
+  <ul>
+    <li><strong>Acceso:</strong> conocer qué datos personales suyos tenemos y cómo los tratamos.</li>
+    <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
+    <li><strong>Cancelación:</strong> solicitar la eliminación de sus datos cuando ya no sean necesarios para la finalidad para la que fueron recopilados.</li>
+    <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos en determinadas circunstancias.</li>
+  </ul>
+  <p>Para ejercer cualquiera de estos derechos, puede contactarnos directamente a través de los canales indicados en la sección 10 de esta política. Responderemos en un plazo máximo de <strong>30 días hábiles</strong>.</p>
+
+  <h2>9. Seguridad de los Datos</h2>
+  <p>2CR adopta medidas técnicas y organizativas apropiadas para proteger sus datos personales contra acceso no autorizado, pérdida, alteración o divulgación. Estas medidas incluyen cifrado de comunicaciones (HTTPS), control de accesos y procedimientos internos de seguridad de la información, coherentes con nuestras certificaciones <strong>ISO 9001, 14001 y 45001</strong>.</p>
+
+  <h2>10. Modificaciones de esta Política</h2>
+  <p>2CR se reserva el derecho a actualizar esta Política de Privacidad en cualquier momento para adaptarla a cambios normativos o de operación. Las modificaciones serán publicadas en esta misma página con la fecha de actualización correspondiente. El uso continuado del sitio tras la publicación de cambios implica su aceptación.</p>
+
+  <div class="divider"></div>
+
+  <div class="contact-box">
+    <h3>Contacto para Asuntos de Privacidad</h3>
+    <p>Si tiene preguntas, solicitudes o reclamaciones relacionadas con el tratamiento de sus datos personales, puede contactarnos por cualquiera de los siguientes medios:</p>
+    <div class="contact-info">
+      <div class="ci-item">
+        <div class="ci-label">Correo electrónico</div>
+        <div class="ci-value"><a href="mailto:contacto@2crconsultores.com">contacto@2crconsultores.com</a></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">Teléfono Chile</div>
+        <div class="ci-value"><a href="tel:+56968451264">+56 968 451 264</a></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">Teléfono Perú</div>
+        <div class="ci-value"><a href="tel:+51997084021">+51 997 084 021</a></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">Sitio web</div>
+        <div class="ci-value"><a href="index.html">www.2crconsultores.com</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2016–2026 2CR Consultoría y Servicios de Ingeniería Limitada. Todos los derechos reservados.</span>
+  <span>Ley N° 19.628 · Protección de la Vida Privada · Chile</span>
+  <a href="index.html">← Volver al sitio principal</a>
+</footer>
+
+</body>
+</html>

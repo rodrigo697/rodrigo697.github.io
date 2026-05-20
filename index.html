@@ -496,9 +496,18 @@
   z-index:9;
 }
 
-/* Responsive */
+/* Responsive — logo 10 años visible en mobile como fondo sutil */
+@keyframes fadeInSubtle { to { opacity:0.38; } }
 @media(max-width:900px){
-  .hero-right { display:none; }
+  .hero-right {
+    display:flex;
+    width:100%;
+    animation:fadeInSubtle 1s ease 1.4s forwards !important;
+  }
+  /* Ocultar tarjetas flotantes y conectores — demasiado ruido en mobile */
+  .hr-metric, .hr-connector { display:none !important; }
+  /* Logo 10 años más pequeño en pantalla chica */
+  .hr-anniv-img { width:clamp(140px,46vw,200px) !important; }
 }
 
 /* ═══════════════════════════════════════
@@ -526,7 +535,7 @@
   --transition:  0.25s ease;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; overflow-x:hidden; }
 body { background:var(--clr-black); color:var(--clr-white); font-family:var(--font-body); overflow-x:hidden; line-height:1.65; }
 
 /* ─── READING PROGRESS ─── */
@@ -3025,6 +3034,17 @@ footer {
   .certs-grid { grid-template-columns:1fr; }
   .ft-grid { grid-template-columns:1fr 1fr; gap:32px; }
   .scroll-hint { display:none; }
+  /* ── Espacios verticales reducidos en mobile ── */
+  .sec { padding-top:64px; padding-bottom:64px; }
+  /* ── SOMNI: grid de 2 columnas → 1 columna ── */
+  .somni-inner { grid-template-columns:1fr; gap:48px; padding:72px 24px; }
+  .somni-wc-inner-wrap { padding:72px 24px; }
+  /* ── SOMNI tag: evitar overflow en pantallas pequeñas ── */
+  .somni-tech-tag { font-size:9px; letter-spacing:1.5px; white-space:normal; }
+  /* ── Sección SOMNI hero dashboard: ocultar en mobile para limpieza ── */
+  .somni-dashboard { display:none; }
+  /* ── Nosotros: reducir padding ── */
+  .sec-nosotros { padding-top:60px; padding-bottom:60px; }
 }
 </style>
 </head>

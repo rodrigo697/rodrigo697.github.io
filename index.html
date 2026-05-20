@@ -3035,16 +3035,36 @@ footer {
   .ft-grid { grid-template-columns:1fr 1fr; gap:32px; }
   .scroll-hint { display:none; }
   /* ── Espacios verticales reducidos en mobile ── */
-  .sec { padding-top:64px; padding-bottom:64px; }
-  /* ── SOMNI: grid de 2 columnas → 1 columna ── */
-  .somni-inner { grid-template-columns:1fr; gap:48px; padding:72px 24px; }
-  .somni-wc-inner-wrap { padding:72px 24px; }
-  /* ── SOMNI tag: evitar overflow en pantallas pequeñas ── */
-  .somni-tech-tag { font-size:9px; letter-spacing:1.5px; white-space:normal; }
+  .sec { padding-top:64px !important; padding-bottom:64px !important; }
+  /* ── Hero content: ancho completo en mobile ── */
+  .hero-content { width:100%; max-width:100%; }
+  /* ── Hero tagline: ajustar tamaño ── */
+  .ht-line2 { font-size:clamp(15px,4.2vw,20px); }
+  /* ── SOMNI hero: grid de 2 columnas → 1 columna ── */
+  .somni-inner { grid-template-columns:1fr !important; gap:40px; padding:72px 24px; }
+  .somni-wc-inner { grid-template-columns:1fr !important; gap:40px; }
+  .somni-wc-inner-wrap { padding:64px 24px; }
+  /* ── SOMNI tags: display:flex + wrap para que no desborden ── */
+  .somni-tech-tag {
+    display:flex !important; flex-wrap:wrap;
+    font-size:9px; letter-spacing:1px; padding:6px 12px;
+    white-space:normal;
+  }
+  .somni-wc-tag {
+    flex-wrap:wrap; font-size:9px;
+    letter-spacing:1.5px; white-space:normal;
+  }
+  /* ── Trust band: ocultar elementos que desbordan en mobile ── */
+  .trust-label { white-space:normal; font-size:9px; }
+  .trust-cert-badge { white-space:normal; }
   /* ── Sección SOMNI hero dashboard: ocultar en mobile para limpieza ── */
-  .somni-dashboard { display:none; }
+  .somni-dashboard { display:none !important; }
   /* ── Nosotros: reducir padding ── */
-  .sec-nosotros { padding-top:60px; padding-bottom:60px; }
+  .sec-nosotros { padding-top:60px !important; padding-bottom:60px !important; }
+  /* ── Secciones con padding propio: override explícito ── */
+  .sec-certs, #certs { padding-top:64px !important; padding-bottom:64px !important; }
+  .sec-contact-wc { padding-top:64px !important; padding-bottom:64px !important; }
+  #somni .somni-inner { padding-top:72px; padding-bottom:72px; }
 }
 </style>
 </head>

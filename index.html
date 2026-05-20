@@ -3079,12 +3079,24 @@ footer {
 <style id="mobile-fixes">
 @media screen and (max-width:900px) {
 
-  /* ── 1. Contención global: nada puede pasarse del ancho de pantalla ── */
-  html, body { overflow-x:hidden !important; max-width:100vw !important; }
-  section, div, article, header, footer, nav {
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
+  /* ── 1. Contención global ── */
+  html, body { overflow-x:hidden !important; }
+
+  /* ── 1b. Todos los grids → 1 columna ── */
+  .srv-grid            { grid-template-columns:1fr !important; }
+  .svc-cards-2x2       { grid-template-columns:1fr !important; }
+  .proy-grid           { grid-template-columns:1fr !important; }
+  .proj-grid           { grid-template-columns:1fr !important; }
+  .c3-benefits         { grid-template-columns:1fr !important; }
+  .certs-v2-grid       { grid-template-columns:1fr !important; }
+  .metrics-inner       { grid-template-columns:1fr 1fr !important; }
+  .nos-mv-cards        { grid-template-columns:1fr !important; }
+  /* Cualquier grid no especificado */
+  [class*="grid"]      { max-width:100% !important; }
+  /* Items de grids: siempre contenidos */
+  [class*="grid"] > *,
+  [class*="-cards"] > *,
+  [class*="-inner"] > * { min-width:0 !important; max-width:100% !important; box-sizing:border-box !important; }
 
   /* ── 2. SOMNI hero ── */
   #somni { overflow:hidden !important; }

@@ -2881,6 +2881,34 @@ h2.sec-h2 span { color:var(--clr-orange); }
 .cta-contact { font-size:13px; color:rgba(255,255,255,0.65); display:flex; align-items:center; gap:8px; }
 .cta-contact a { color:rgba(255,255,255,0.85); text-decoration:none; transition:color var(--transition); }
 .cta-contact a:hover { color:#fff; }
+/* ─── FORMULARIO DE CONTACTO ─── */
+.cf-botcheck { display:none !important; }
+.cf-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.cf-field { margin-bottom:12px; }
+.cf-row .cf-field { margin-bottom:0; }
+.cf-input {
+  width:100%; background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:10px; padding:14px 18px;
+  font-size:15px; color:var(--clr-white);
+  font-family:var(--font-body);
+  transition:border-color .2s,background .2s;
+  outline:none; box-sizing:border-box;
+}
+.cf-input::placeholder { color:rgba(255,255,255,0.3); }
+.cf-input:focus { border-color:rgba(255,92,0,0.5); background:rgba(255,92,0,0.04); }
+.cf-textarea { resize:vertical; min-height:110px; }
+.cf-submit {
+  width:100%; justify-content:center; margin-top:4px;
+  border:none; cursor:pointer; font-size:16px;
+  font-family:var(--font-body);
+}
+.cf-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
+.cf-msg { font-size:14px; margin-top:12px; padding:12px 16px; border-radius:8px; }
+.cf-ok  { color:#27C93F; background:rgba(39,201,63,0.08); border:1px solid rgba(39,201,63,0.2); }
+.cf-err { color:#FF5C00; background:rgba(255,92,0,0.08); border:1px solid rgba(255,92,0,0.2); }
+.cf-err a { color:inherit; }
+@media(max-width:600px){ .cf-row { grid-template-columns:1fr; } }
 
 /* ─── UBICACIONES PREMIUM ─── */
 .loc-section { max-width:860px; margin:0 auto; padding:0 20px; }
@@ -4350,13 +4378,29 @@ footer {
       <h2 class="cwc-h2">¿Listo para<br>transformar tu<br><em>operación?</em></h2>
       <p class="cwc-body">Cuéntanos tu desafío. Nuestros ingenieros y especialistas diseñarán una solución a la medida de tu industria. Respondemos en menos de 24 horas.</p>
 
-      <div class="cwc-actions">
-        <a href="mailto:contacto@2crconsultores.com" class="btn cwc-btn-primary">
+      <!-- Formulario Web3Forms -->
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="b3037ae7-1ba4-4881-815c-bc4dcc873e4c">
+        <input type="hidden" name="subject" value="Nuevo contacto desde 2crconsultores.com">
+        <input type="hidden" name="from_name" value="Sitio Web 2CR">
+        <input type="checkbox" name="botcheck" class="cf-botcheck" tabindex="-1" aria-hidden="true">
+        <div class="cf-row">
+          <div class="cf-field">
+            <input type="text" name="name" placeholder="Tu nombre" required class="cf-input" autocomplete="name">
+          </div>
+          <div class="cf-field">
+            <input type="email" name="email" placeholder="Tu email" required class="cf-input" autocomplete="email">
+          </div>
+        </div>
+        <div class="cf-field">
+          <textarea name="message" placeholder="Cuéntanos tu proyecto o desafío…" rows="4" required class="cf-input cf-textarea"></textarea>
+        </div>
+        <button type="submit" class="btn cwc-btn-primary cf-submit" id="cf-submit">
           Enviar mensaje <span class="btn-icon">→</span>
-        </a>
-      </div>
-
-      <!-- Email eliminado de aquí -->
+        </button>
+        <p id="cf-success" class="cf-msg cf-ok" style="display:none">✓ Mensaje enviado. Te respondemos en menos de 24 horas.</p>
+        <p id="cf-error"   class="cf-msg cf-err" style="display:none">Error al enviar. Escríbenos a <a href="mailto:contacto@2crconsultores.com">contacto@2crconsultores.com</a></p>
+      </form>
     </div>
 
     <!-- Columna derecha: presencia simplificada -->
@@ -5105,6 +5149,38 @@ function toggleMobileMenu() {
     else { links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:74px;left:0;right:0;background:rgba(10,10,10,0.97);padding:24px;gap:8px;border-bottom:1px solid #272727;'; }
   }
 }
+
+// ── Formulario de contacto (Web3Forms) ────────────────
+(function(){
+  var form = document.getElementById('contact-form');
+  if(!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn  = document.getElementById('cf-submit');
+    var ok   = document.getElementById('cf-success');
+    var err  = document.getElementById('cf-error');
+    var orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Enviando…';
+    ok.style.display  = 'none';
+    err.style.display = 'none';
+    try {
+      var res  = await fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(form) });
+      var data = await res.json();
+      if(data.success){
+        ok.style.display = 'block';
+        form.reset();
+        btn.innerHTML = 'Mensaje enviado ✓';
+      } else {
+        throw new Error(data.message || 'Error');
+      }
+    } catch(ex){
+      err.style.display = 'block';
+      btn.disabled  = false;
+      btn.innerHTML = orig;
+    }
+  });
+})();
 </script>
 </body>
 </html>

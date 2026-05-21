@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Generar og-image 2CR</title>
+<style>
+  body { margin:0; background:#111; display:flex; flex-direction:column; align-items:center; padding:40px; font-family:Arial,sans-serif; color:#fff; }
+  h2 { margin:0 0 16px; font-size:18px; color:#9CA3AF; }
+  canvas { border:1px solid #333; display:block; max-width:100%; }
+  button { margin-top:24px; background:#FF3D00; color:#fff; border:none; padding:14px 32px; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; }
+  button:hover { background:#e03500; }
+  p { color:#6B7280; font-size:13px; margin-top:12px; }
+</style>
+</head>
+<body>
+<h2>og-image 2CR — preview (clic en descargar para guardar)</h2>
+<canvas id="c" width="1200" height="630"></canvas>
+<button onclick="descargar()">⬇ Descargar og-image.jpg</button>
+<p>Guarda el archivo como <strong>og-image.jpg</strong> en la carpeta del repositorio (rodrigo697.github.io)</p>
+
+<script>
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+
+function draw() {
+  const W = 1200, H = 630;
+
+  // Fondo negro
+  ctx.fillStyle = '#0A0A0A';
+  ctx.fillRect(0, 0, W, H);
+
+  // Círculos decorativos (esquina superior derecha)
+  ctx.strokeStyle = '#1C1C1C';
+  ctx.lineWidth = 1;
+  [320, 480, 640].forEach(r => {
+    ctx.beginPath();
+    ctx.arc(W, 0, r, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+
+  // Barra naranja izquierda
+  ctx.fillStyle = '#FF3D00';
+  ctx.fillRect(0, 0, 5, H);
+
+  // Línea naranja inferior
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = '#FF3D00';
+  ctx.fillRect(0, H - 3, W, 3);
+  ctx.globalAlpha = 1;
+
+  // Logo 2CR (texto geométrico como fallback inmediato)
+  // Intentamos cargar el PNG; si falla, usamos el texto
+  const logo = new Image();
+  logo.onload = function() {
+    // Logo PNG cargado — dibujarlo centrado verticalmente en la zona izquierda
+    const lH = 92;
+    const lW = (logo.width / logo.height) * lH;
+    ctx.drawImage(logo, 80, 120, lW, lH);
+    drawText();
+  };
+  logo.onerror = function() {
+    // Fallback: tipografía manual
+    ctx.fillStyle = '#FF3D00';
+    ctx.font = 'bold 88px Arial Black, Arial, sans-serif';
+    ctx.fillText('2', 80, 220);
+    ctx.fillStyle = '#4B5563';
+    ctx.fillText('CR', 175, 220);
+    drawText();
+  };
+  logo.src = 'Logo 2CR_PRO naranja full.png';
+}
+
+function drawText() {
+  const W = 1200, H = 630;
+
+  // Divisor naranja
+  ctx.fillStyle = '#FF3D00';
+  ctx.fillRect(80, 248, 44, 3);
+
+  // Tagline principal
+  ctx.fillStyle = '#FFFFFF';
+  ctx.font = 'bold 46px Arial, sans-serif';
+  ctx.fillText('Consultoría y Servicios', 80, 316);
+  ctx.fillText('de Ingeniería', 80, 374);
+
+  // Subtítulo
+  ctx.fillStyle = '#9CA3AF';
+  ctx.font = '22px Arial, sans-serif';
+  ctx.fillText('Chile  ·  Perú  ·  Desde 2016', 80, 426);
+
+  // Badges derecha
+  const badges = [
+    { n:'10',    s:'AÑOS DE EXPERIENCIA' },
+    { n:'ISO',   s:'9001 · 14001 · 45001' },
+    { n:'SOMNI', s:'IA PARA LA INDUSTRIA'  },
+  ];
+  const bx = 830, bw = 290, bh = 100, gap = 18;
+  badges.forEach((b, i) => {
+    const by = 108 + i * (bh + gap);
+    // fondo badge
+    ctx.fillStyle = '#161616';
+    roundRect(ctx, bx, by, bw, bh, 10);
+    ctx.fill();
+    ctx.strokeStyle = '#252525';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    // número
+    ctx.fillStyle = '#FF3D00';
+    ctx.font = `bold ${b.n.length > 3 ? 24 : 30}px Arial, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(b.n, bx + bw / 2, by + 48);
+    // label
+    ctx.fillStyle = '#6B7280';
+    ctx.font = '11px Arial, sans-serif';
+    ctx.fillText(b.s, bx + bw / 2, by + 70);
+    ctx.textAlign = 'left';
+  });
+
+  // URL
+  ctx.fillStyle = '#374151';
+  ctx.font = '14px Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('rodrigo697.github.io', W / 2, H - 28);
+  ctx.textAlign = 'left';
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.arcTo(x + w, y, x + w, y + r, r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+  ctx.lineTo(x + r, y + h);
+  ctx.arcTo(x, y + h, x, y + h - r, r);
+  ctx.lineTo(x, y + r);
+  ctx.arcTo(x, y, x + r, y, r);
+  ctx.closePath();
+}
+
+function descargar() {
+  const link = document.createElement('a');
+  link.download = 'og-image.jpg';
+  link.href = c.toDataURL('image/jpeg', 0.93);
+  link.click();
+}
+
+draw();
+</script>
+</body>
+</html>

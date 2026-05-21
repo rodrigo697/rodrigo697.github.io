@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Términos de Uso — 2CR Consultoría y Servicios de Ingeniería</title>
+<meta name="description" content="Términos y condiciones de uso del sitio web de 2CR Consultoría y Servicios de Ingeniería Limitada.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" sizes="512x512" href="512_2CR.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:#0A0A0A; --deep:#111; --orange:#FF5C00;
+  --white:#fff; --g300:#bbb; --g500:#777; --g700:#444;
+  --border:#272727;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;line-height:1.7;}
+
+nav {
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 72px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;}
+.nav-logo img{height:40px;width:auto;}
+.nav-back{
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;
+  color:var(--g500);text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color 0.2s;
+}
+.nav-back:hover{color:var(--white);}
+
+.hero-pp {
+  padding:80px 72px 60px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,var(--deep) 0%,var(--black) 100%);
+}
+.hero-pp .tag {
+  font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.hero-pp .tag::before{content:'';display:block;width:22px;height:1px;background:var(--orange);}
+.hero-pp h1 {
+  font-family:'Montserrat',sans-serif;font-weight:900;
+  font-size:clamp(32px,4vw,52px);letter-spacing:-2px;line-height:1.05;
+  margin-bottom:16px;
+}
+.hero-pp p {
+  font-size:16px;color:var(--g300);font-weight:300;max-width:620px;
+}
+.hero-pp .update {
+  display:inline-block;margin-top:20px;
+  font-size:11px;color:var(--g700);
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);border-radius:6px;
+  padding:6px 14px;letter-spacing:0.5px;
+}
+
+.content {
+  max-width:860px;margin:0 auto;
+  padding:72px 72px 100px;
+}
+
+h2 {
+  font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;
+  letter-spacing:-0.5px;margin:52px 0 16px;
+  padding-left:16px;border-left:3px solid var(--orange);
+}
+h2:first-child{margin-top:0;}
+
+h3 {
+  font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;
+  color:var(--orange);margin:28px 0 10px;
+}
+
+p {margin-bottom:18px;font-size:15px;color:var(--g300);line-height:1.82;}
+p strong{color:var(--white);}
+
+ul {
+  list-style:none;margin:0 0 18px;padding:0;
+}
+ul li {
+  font-size:15px;color:var(--g300);
+  padding:8px 0 8px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  position:relative;line-height:1.6;
+}
+ul li::before{
+  content:'→';color:var(--orange);
+  position:absolute;left:0;top:9px;font-size:12px;
+}
+ul li:last-child{border-bottom:none;}
+
+.highlight-box {
+  background:rgba(255,92,0,0.06);
+  border:1px solid rgba(255,92,0,0.2);
+  border-radius:12px;padding:24px 28px;
+  margin:28px 0;
+}
+.highlight-box p{margin-bottom:0;color:var(--g300);}
+
+.contact-box {
+  background:var(--deep);border:1px solid var(--border);
+  border-radius:14px;padding:32px;margin-top:48px;
+}
+.contact-box h3{margin-top:0;}
+.contact-info{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.ci-item{
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);
+  border-radius:8px;padding:16px;
+}
+.ci-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g700);font-weight:600;margin-bottom:6px;}
+.ci-value{font-size:14px;color:var(--white);font-weight:500;}
+.ci-value a{color:var(--orange);text-decoration:none;}
+
+.divider{height:1px;background:var(--border);margin:48px 0;}
+
+footer {
+  background:var(--black);border-top:1px solid var(--border);
+  padding:28px 72px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--g700);flex-wrap:wrap;gap:12px;
+}
+footer a{color:var(--g500);text-decoration:none;}
+footer a:hover{color:var(--orange);}
+
+@media(max-width:768px){
+  nav,.hero-pp,.content,footer{padding-left:24px;padding-right:24px;}
+  .contact-info{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Logo 2CR_PRO.png" alt="2CR" onerror="this.src='512_2CR.png';this.onerror=null;">
+  </a>
+  <a href="index.html" class="nav-back">← Volver al sitio</a>
+</nav>
+
+<section class="hero-pp">
+  <div class="tag">Legal · Condiciones</div>
+  <h1>Términos<br>de Uso</h1>
+  <p>El acceso y uso de este sitio web implica la aceptación plena de las presentes condiciones. Le invitamos a leerlas detenidamente antes de continuar navegando.</p>
+  <span class="update">Última actualización: Mayo 2026 · Vigente desde el 27/05/2026</span>
+</section>
+
+<div class="content">
+
+  <h2>1. Titularidad del Sitio Web</h2>
+  <p>El presente sitio web es propiedad y está operado por <strong>2CR Consultoría y Servicios de Ingeniería Limitada</strong> (en adelante "2CR"), empresa constituida en Chile, con presencia operacional en Perú.</p>
+  <p>Al acceder y utilizar este sitio web, usted declara haber leído, comprendido y aceptado en su totalidad los presentes Términos de Uso, así como nuestra <a href="politica-privacidad.html" style="color:var(--orange);text-decoration:none;">Política de Privacidad</a>. Si no está de acuerdo con alguna de estas condiciones, le rogamos que se abstenga de utilizar el sitio.</p>
+
+  <h2>2. Objeto y Alcance</h2>
+  <p>Este sitio web tiene como finalidad presentar los servicios, capacidades y trayectoria de 2CR, facilitar el contacto con potenciales clientes y colaboradores, y difundir información relevante sobre ingeniería, tecnología e innovación aplicada a la industria.</p>
+  <p>Los presentes Términos de Uso regulan el acceso y la utilización del sitio web accesible en <strong>rodrigo697.github.io</strong> y cualquier dominio asociado, incluyendo todos sus contenidos, funcionalidades y servicios disponibles.</p>
+
+  <h2>3. Uso Permitido</h2>
+  <p>El usuario se compromete a utilizar el sitio web de conformidad con la ley, la moral y el orden público, así como con los presentes Términos de Uso. Queda expresamente permitido:</p>
+  <ul>
+    <li>Navegar libremente por el contenido publicado en el sitio</li>
+    <li>Utilizar el formulario de contacto para consultas legítimas de carácter profesional o comercial</li>
+    <li>Compartir enlaces al sitio web con fines informativos o de referencia</li>
+    <li>Descargar o imprimir contenidos para uso personal y no comercial, citando la fuente</li>
+  </ul>
+
+  <h2>4. Usos Prohibidos</h2>
+  <p>Queda estrictamente prohibido, entre otros:</p>
+  <ul>
+    <li>Reproducir, distribuir o modificar el contenido del sitio sin autorización escrita previa de 2CR</li>
+    <li>Utilizar el sitio o sus contenidos con fines comerciales sin consentimiento expreso</li>
+    <li>Transmitir datos falsos, engañosos o que puedan inducir a error al usar el formulario de contacto</li>
+    <li>Realizar acciones que puedan dañar, sobrecargar o deteriorar el funcionamiento del sitio</li>
+    <li>Intentar acceder a áreas restringidas o sistemas informáticos asociados al sitio</li>
+    <li>Utilizar herramientas automatizadas (bots, scrapers) para extraer contenido de forma masiva</li>
+    <li>Suplantar la identidad de 2CR o sus representantes</li>
+  </ul>
+
+  <h2>5. Propiedad Intelectual</h2>
+  <p>Todos los contenidos de este sitio web — incluyendo, sin limitarse a ello, textos, gráficos, logotipos, fotografías, ilustraciones, diseños, código fuente y software — son propiedad de <strong>2CR Consultoría y Servicios de Ingeniería Limitada</strong> o de sus legítimos licenciantes, y están protegidos por las leyes de propiedad intelectual e industrial vigentes en Chile, Perú y el ámbito internacional.</p>
+
+  <div class="highlight-box">
+    <p>El uso no autorizado de cualquier elemento de este sitio podrá dar lugar a las acciones legales que correspondan conforme a la legislación aplicable.</p>
+  </div>
+
+  <p>La marca <strong>2CR</strong>, el logotipo corporativo y el nombre <strong>SOMNI</strong> son marcas registradas o en proceso de registro de 2CR. Ninguna disposición de estos Términos de Uso otorga al usuario licencia o derecho alguno sobre dichas marcas.</p>
+
+  <h2>6. Exactitud de la Información</h2>
+  <p>2CR realiza sus mejores esfuerzos para mantener la información publicada en este sitio actualizada, completa y precisa. Sin embargo, no garantiza la exactitud o integridad absoluta de los contenidos, los cuales pueden estar sujetos a cambios sin previo aviso.</p>
+  <p>La información contenida en este sitio tiene carácter meramente informativo y no constituye oferta vinculante, asesoría técnica, legal o financiera, ni reemplaza la consulta directa con nuestros profesionales.</p>
+
+  <h2>7. Limitación de Responsabilidad</h2>
+  <p>En la máxima medida permitida por la legislación aplicable, 2CR no será responsable por:</p>
+  <ul>
+    <li>Daños directos, indirectos, incidentales o consecuentes derivados del uso o imposibilidad de uso del sitio</li>
+    <li>Interrupciones, errores o defectos técnicos que puedan afectar la disponibilidad del sitio</li>
+    <li>Daños causados por virus u otros elementos tecnológicos dañinos que pudieran transmitirse a través del sitio</li>
+    <li>Decisiones adoptadas por el usuario sobre la base de la información publicada en el sitio</li>
+  </ul>
+
+  <h2>8. Enlace a Sitios de Terceros</h2>
+  <p>Este sitio puede contener enlaces a sitios web de terceros, incluyendo plataformas como <strong>SOMNI</strong> y otras herramientas digitales asociadas. Estos enlaces se facilitan únicamente a modo de referencia informativa. 2CR no ejerce control sobre el contenido de dichos sitios y no asume responsabilidad alguna por su disponibilidad, contenido o prácticas de privacidad.</p>
+  <p>La inclusión de un enlace no implica respaldo, asociación ni relación alguna entre 2CR y el sitio de destino.</p>
+
+  <h2>9. Privacidad y Datos Personales</h2>
+  <p>El tratamiento de los datos personales que el usuario facilite a través de este sitio — en particular mediante el formulario de contacto — se rige por nuestra <a href="politica-privacidad.html" style="color:var(--orange);text-decoration:none;">Política de Privacidad</a>, que forma parte integrante de los presentes Términos de Uso.</p>
+
+  <h2>10. Modificaciones</h2>
+  <p>2CR se reserva el derecho de modificar en cualquier momento los presentes Términos de Uso, así como los contenidos, servicios y configuración del sitio web, sin necesidad de previo aviso. Los cambios entran en vigor desde su publicación en el sitio.</p>
+  <p>Le recomendamos revisar periódicamente esta página para mantenerse informado sobre las condiciones vigentes. El uso continuado del sitio tras la publicación de cambios implica la aceptación de los mismos.</p>
+
+  <h2>11. Ley Aplicable y Jurisdicción</h2>
+  <p>Los presentes Términos de Uso se rigen e interpretan conforme a las leyes de la <strong>República de Chile</strong>. Para la resolución de cualquier controversia derivada del acceso o uso de este sitio, las partes se someten a la jurisdicción de los tribunales ordinarios de justicia de la ciudad de <strong>Rancagua, Chile</strong>, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.</p>
+  <p>Para usuarios ubicados en Perú, se aplicará la legislación chilena en todo aquello que no contravenga disposiciones de orden público peruano.</p>
+
+  <div class="divider"></div>
+
+  <div class="contact-box">
+    <h3>¿Tienes dudas sobre estos términos?</h3>
+    <p style="margin-bottom:0;color:var(--g500);font-size:14px;">Si tienes alguna consulta sobre las condiciones de uso de este sitio, puedes contactarnos directamente.</p>
+    <div class="contact-info">
+      <div class="ci-item">
+        <div class="ci-label">Email</div>
+        <div class="ci-value"><a href="mailto:contacto@2crconsultores.com">contacto@2crconsultores.com</a></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label">Sede</div>
+        <div class="ci-value">Rancagua, Chile</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2016–2026 2CR Consultoría y Servicios de Ingeniería Limitada. Todos los derechos reservados.</span>
+  <span>
+    <a href="index.html">Inicio</a> &nbsp;·&nbsp;
+    <a href="politica-privacidad.html">Política de Privacidad</a> &nbsp;·&nbsp;
+    <a href="terminos-uso.html" style="color:var(--orange);">Términos de Uso</a>
+  </span>
+</footer>
+
+</body>
+</html>

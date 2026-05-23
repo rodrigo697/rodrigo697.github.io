@@ -125,58 +125,80 @@ function drawBase() {
 function drawContent() {
   const W = 1200, H = 630;
 
-  // Divisor naranja bajo el logo
+  // ── Divisor naranja bajo el logo ─────────────────────────
   ctx.fillStyle = '#FF3D00';
-  ctx.fillRect(80, 248, 52, 4);
+  ctx.fillRect(80, 232, 52, 4);
 
-  // Tagline principal
+  // ── Tagline principal ─────────────────────────────────────
   ctx.fillStyle = '#FFFFFF';
   ctx.font = 'bold 50px Arial, sans-serif';
   ctx.textBaseline = 'alphabetic';
-  ctx.fillText('Consultoría y Servicios', 80, 315);
-  ctx.fillText('de Ingeniería', 80, 378);
+  ctx.fillText('Consultoría y Servicios', 80, 305);
+  ctx.fillText('de Ingeniería', 80, 368);
 
-  // Subtítulo
-  ctx.fillStyle = '#9CA3AF';
-  ctx.font = '23px Arial, sans-serif';
-  ctx.fillText('Chile  ·  Perú  ·  Desde 2016', 80, 432);
+  // ── Subtítulo: "Innovación útil" naranja + resto blanco ───
+  ctx.font = '24px Arial, sans-serif';
+  const parte1 = 'Innovación útil';
+  const parte2 = ' para empresas en movimiento.';
+  ctx.fillStyle = '#FF5C00';
+  ctx.fillText(parte1, 80, 418);
+  const anchoP1 = ctx.measureText(parte1).width;
+  ctx.fillStyle = '#E5E7EB';
+  ctx.fillText(parte2, 80 + anchoP1, 418);
 
-  // Badges derecha
+  // ── Badges derecha — nuevo estilo ────────────────────────
   const badges = [
-    { n: '10+',   s: 'AÑOS DE EXPERIENCIA'  },
-    { n: 'ISO',   s: '9001 · 14001 · 45001' },
-    { n: 'SOMNI', s: 'IA PARA LA INDUSTRIA' },
+    { l1: 'Donde la ingeniería', l1c: '#FF5C00', l2: 'se pone a trabajar.', l2c: '#FFFFFF' },
+    { l1: 'ISO',                 l1c: '#FF5C00', l2: '9001 – 14001 – 45001', l2c: '#FFFFFF' },
+    { l1: 'En terreno, todos',   l1c: '#FFFFFF', l2: 'los días.',            l2c: '#FFFFFF', l2accent: 'días.' },
   ];
-  const bx = 820, bw = 310, bh = 108, gap = 20;
+
+  const bx = 790, bw = 350, bh = 116, gap = 18;
   badges.forEach((b, i) => {
-    const by = 96 + i * (bh + gap);
+    const by = 88 + i * (bh + gap);
+
+    // Fondo badge
     ctx.fillStyle = '#141414';
     roundRect(ctx, bx, by, bw, bh, 12);
     ctx.fill();
-    ctx.strokeStyle = '#2A2A2A';
+    ctx.strokeStyle = '#272727';
     ctx.lineWidth = 1;
     ctx.stroke();
-    // Acento naranja izquierdo
-    ctx.fillStyle = '#FF3D00';
-    ctx.fillRect(bx, by + 22, 3, bh - 44);
-    // Número / sigla
-    const fs = b.n.length > 3 ? 26 : 34;
-    ctx.fillStyle = '#FF3D00';
-    ctx.font = `bold ${fs}px Arial, sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.fillText(b.n, bx + bw / 2, by + 56);
-    // Etiqueta
-    ctx.fillStyle = '#6B7280';
-    ctx.font = '12px Arial, sans-serif';
-    ctx.fillText(b.s, bx + bw / 2, by + 80);
+
+    // Barra naranja izquierda
+    ctx.fillStyle = '#FF5C00';
+    ctx.fillRect(bx, by + 18, 4, bh - 36);
+
+    const tx = bx + 24; // texto inicia después de la barra
+
+    // Línea 1
+    ctx.font = 'bold 22px Arial, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillStyle = b.l1c;
+    ctx.fillText(b.l1, tx, by + 52);
+
+    // Línea 2 — con posible palabra naranja al final
+    ctx.font = '18px Arial, sans-serif';
+    if (b.l2accent) {
+      // "los " blanco + "días." naranja
+      const sinAccent = b.l2.replace(b.l2accent, '');
+      ctx.fillStyle = '#D1D5DB';
+      ctx.fillText(sinAccent, tx, by + 84);
+      const anchoSin = ctx.measureText(sinAccent).width;
+      ctx.fillStyle = '#FF5C00';
+      ctx.fillText(b.l2accent, tx + anchoSin, by + 84);
+    } else {
+      ctx.fillStyle = '#D1D5DB';
+      ctx.fillText(b.l2, tx, by + 84);
+    }
     ctx.textAlign = 'left';
   });
 
-  // URL footer
-  ctx.fillStyle = '#374151';
-  ctx.font = '15px Arial, sans-serif';
+  // ── URL footer ────────────────────────────────────────────
+  ctx.fillStyle = '#4B5563';
+  ctx.font = '16px Arial, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('rodrigo697.github.io', W / 2, H - 24);
+  ctx.fillText('www.2crconsultores.com', W / 2, H - 24);
   ctx.textAlign = 'left';
 }
 

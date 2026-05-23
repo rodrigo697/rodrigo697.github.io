@@ -3206,6 +3206,33 @@ footer {
   [class*="grid"] > *,
   [class*="inner"] > *,
   [class*="-inner"] { min-width:0 !important; }
+
+  /* ── 8. SOMNI WC: eliminar min-height y centrado vertical que generan espacios vacíos ── */
+  #somni {
+    min-height:auto !important;
+    display:block !important;
+    align-items:unset !important;
+  }
+
+  /* ── 9. SOMNI WC title: reducir fuente para evitar desbordamiento horizontal ── */
+  .somni-wc-title {
+    font-size:clamp(20px,5.8vw,26px) !important;
+    letter-spacing:-0.5px !important;
+    line-height:1.2 !important;
+  }
+
+  /* ── 10. SOMNI closing text: contener texto largo en mobile ── */
+  .somni-closing-text {
+    font-size:clamp(15px,4.2vw,18px) !important;
+    letter-spacing:0 !important;
+  }
+
+  /* ── 11. Belle Sand y logos clientes: dimensiones explícitas para evitar reflow ── */
+  .client-logo-item img {
+    width:auto !important;
+    height:40px !important;
+    max-width:130px !important;
+  }
 }
 </style>
 </head>
@@ -3934,7 +3961,6 @@ footer {
       <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--clr-orange);margin-bottom:12px;display:flex;align-items:center;gap:10px;"><span style="display:block;width:22px;height:1px;background:var(--clr-orange);"></span>Nuestros Servicios</div>
       <h2 class="c3-title">Centro Control<br>de Carretera</h2>
       <div class="c3-tag">Seguridad Vial · 24/7 · División El Teniente · CODELCO</div>
-      <p class="c3-subtitle">SEGURIDAD VIAL – 24/7</p>
       <p class="c3-body">Servicio orientado a maximizar la seguridad vial y la eficiencia operativa a lo largo de toda la red vial 24/7, contribuyendo al funcionamiento óptimo del proceso productivo y a la atención de emergencias en División El Teniente.</p>
     </div>
   </div>
@@ -4224,7 +4250,7 @@ footer {
         <div class="proy-card-name">2CR Perú SAC</div>
         <div class="proy-card-meta">Lima · Perú</div>
       </div>
-      <div class="proy-card-count">5 fotos</div>
+      <div class="proy-card-count">3 fotos</div>
       <div class="proy-card-icon">↗</div>
     </div>
 
@@ -4341,6 +4367,7 @@ footer {
     <div class="clients-logo-row">
       <div class="client-logo-item">
         <img src="clientes/hotel-belle-sand.png" alt="Belle Sand Hotel" loading="lazy"
+             width="160" height="52" style="width:auto;height:52px;"
              onerror="this.src='Clientes/Hotel Belle Sand.png';this.onerror=null;">
       </div>
       <div class="client-logo-item">
@@ -4743,10 +4770,8 @@ const PROYECTOS = [
     pdf: null,
     fotos: [
       '06-2cr-peru-sac/m.jpg',
-      '06-2cr-peru-sac/m1-1.jpg',
-      '06-2cr-peru-sac/m2-1.jpg',
-      '06-2cr-peru-sac/m3-1.jpg',
-      '06-2cr-peru-sac/m4-1.jpg'
+      '06-2cr-peru-sac/m2.jpg',
+      '06-2cr-peru-sac/m3.jpg'
     ]
   },
   // [6]
